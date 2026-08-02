@@ -1,0 +1,1269 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lato:wght@400;700&display=swap');
+
+:root{
+  --navy:#0B2A4A; --cyan:#24C0EB; --text:#3D4852; --text-muted:#7C8A99;
+  --bg:#F1F4F8; --green:#1F9D6F; --border:#D6DEE6;
+}
+*{box-sizing:border-box}
+.lcg-app{font-family:'Lato',sans-serif;color:var(--text);background:var(--bg);
+  border-radius:12px;padding:0;display:flex;flex-direction:column;}
+
+/* ===== Header / barra de acciones ===== */
+.lcg-header{background:var(--navy);border-radius:12px 12px 0 0;padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.lcg-brand{display:flex;align-items:center;gap:12px;}
+.lcg-logo{display:flex;flex-direction:column;gap:2px;}
+.lcg-logo .word1{font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;color:#fff;line-height:1;letter-spacing:.01em;}
+.lcg-logo .word2row{display:flex;align-items:center;gap:4px;}
+.lcg-dotgrid{display:grid;grid-template-columns:repeat(3,3.5px);grid-template-rows:repeat(2,3.5px);gap:1.8px;}
+.lcg-dotgrid span{width:3.5px;height:3.5px;background:var(--cyan);border-radius:50%;}
+.lcg-logo .word2{font-family:'Poppins',sans-serif;font-weight:700;font-size:10.5px;color:#fff;letter-spacing:.02em;}
+.lcg-apptitle{font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;color:#fff;
+  border-left:1px solid rgba(255,255,255,.25);padding-left:12px;letter-spacing:.02em;}
+.lcg-status{display:flex;align-items:center;gap:6px;font-size:11.5px;color:#BFD4E8;}
+.lcg-status .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);}
+.lcg-actions-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.lcg-iconbtn{font-family:'Poppins',sans-serif;font-weight:500;font-size:12.5px;color:#fff;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:7px;
+  padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.lcg-iconbtn:hover{background:rgba(255,255,255,.16);}
+.lcg-iconbtn.primary{background:var(--cyan);color:var(--navy);border-color:var(--cyan);font-weight:700;}
+.lcg-iconbtn.primary:hover{background:#3ecbf4;}
+
+/* Tabs */
+.lcg-tabs{display:flex;gap:8px;border-bottom:2px solid var(--border);padding:0 20px;background:#fff;}
+.lcg-tab{font-family:'Poppins',sans-serif;font-weight:500;font-size:13.5px;color:var(--text-muted);
+  background:none;border:none;padding:10px 14px;cursor:pointer;border-bottom:3px solid transparent;
+  margin-bottom:-2px;}
+.lcg-tab.active{color:var(--navy);border-bottom-color:var(--cyan);}
+.lcg-tab:hover{color:var(--navy);}
+
+.lcg-body{padding:20px;}
+.lcg-view{display:none;}
+.lcg-view.active{display:block;}
+
+/* Layout nueva OC */
+.lcg-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
+@media (max-width:900px){.lcg-grid{grid-template-columns:1fr;}}
+
+.lcg-panel{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px;}
+.lcg-panel h3{font-family:'Poppins',sans-serif;color:var(--navy);margin:0 0 12px;font-size:14px;
+  padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;}
+.lcg-secnum{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+  border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:700;flex:none;}
+.lcg-gestionar{font-family:'Lato',sans-serif;font-weight:400;font-size:11.5px;color:var(--cyan);
+  cursor:pointer;text-decoration:underline;margin-left:auto;border:none;background:none;}
+
+.lcg-field{margin-bottom:12px;}
+.lcg-field label{display:block;font-size:11px;font-weight:700;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px;}
+.lcg-field input,.lcg-field select,.lcg-field textarea{
+  width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;
+  font-family:'Lato',sans-serif;font-size:13.5px;color:var(--text);background:#fff;}
+.lcg-field input:focus,.lcg-field select:focus,.lcg-field textarea:focus{
+  outline:none;border-color:var(--cyan);}
+.lcg-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.lcg-row3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;}
+
+.lcg-items{width:100%;border-collapse:collapse;margin-bottom:10px;}
+.lcg-items th{font-size:11px;text-transform:uppercase;color:var(--text-muted);text-align:left;
+  padding:4px 6px;border-bottom:1px solid var(--border);}
+.lcg-items td{padding:4px 6px;vertical-align:top;}
+.lcg-items input{padding:6px 8px;font-size:13px;}
+.lcg-items .num{text-align:right;}
+.lcg-del{background:none;border:none;color:#A32D2D;cursor:pointer;font-size:16px;line-height:1;padding:4px;}
+.lcg-btn{font-family:'Poppins',sans-serif;font-weight:500;font-size:13.5px;border-radius:7px;
+  padding:9px 16px;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--navy);}
+.lcg-btn:hover{border-color:var(--cyan);}
+.lcg-btn-primary{background:var(--navy);color:#fff;border-color:var(--navy);}
+.lcg-btn-primary:hover{background:#0d3560;}
+.lcg-btn-ghost{border:none;color:var(--text-muted);}
+.lcg-hint{font-size:12px;color:var(--text-muted);margin-top:6px;}
+
+/* Resumen card */
+.lcg-resumen{background:var(--navy);border-radius:10px;padding:16px 18px;margin-bottom:14px;color:#fff;}
+.lcg-resumen h3{font-family:'Poppins',sans-serif;font-size:13px;margin:0 0 10px;color:#BFD4E8;
+  text-transform:uppercase;letter-spacing:.03em;}
+.lcg-resumen-row{display:flex;justify-content:space-between;font-size:13px;padding:4px 0;color:#DCE7F2;}
+.lcg-resumen-row.total{border-top:1px solid rgba(255,255,255,.2);margin-top:6px;padding-top:10px;
+  font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;color:#fff;}
+
+/* Preview / documento */
+.lcg-preview-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:0;
+  position:sticky;top:0;overflow:hidden;}
+.lcg-topbar{height:5px;background:var(--cyan);}
+#lcg-doc{padding:26px 26px 0;font-family:'Lato',sans-serif;font-size:12px;color:var(--text);}
+.lcg-doc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+.lcg-doclogo{display:flex;flex-direction:column;gap:3px;}
+.lcg-doclogo .word1{font-family:'Poppins',sans-serif;font-weight:700;font-size:23px;color:var(--navy);
+  letter-spacing:.01em;line-height:1;}
+.lcg-doclogo .word2row{display:flex;align-items:center;gap:7px;}
+.lcg-doclogo .lcg-dotgrid{grid-template-columns:repeat(3,5px);grid-template-rows:repeat(2,5px);gap:2.5px;}
+.lcg-doclogo .lcg-dotgrid span{width:5px;height:5px;}
+.lcg-doclogo .word2{font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;color:var(--navy);letter-spacing:.01em;}
+.lcg-doc-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;color:var(--navy);text-align:right;
+  white-space:nowrap;padding-top:4px;}
+.lcg-razon{font-family:'Poppins',sans-serif;font-weight:700;font-size:11.5px;margin:10px 0 6px;
+  padding-bottom:6px;border-bottom:2px solid var(--cyan);color:var(--navy);}
+.lcg-infoblock{width:100%;border-collapse:collapse;margin-bottom:8px;}
+.lcg-infoblock td{border:1px solid var(--border);padding:4px 6px;font-size:11px;}
+.lcg-infoblock td.k{font-family:'Poppins',sans-serif;font-weight:600;width:14%;background:var(--bg);color:var(--navy);}
+.lcg-infoblock td.v{width:36%;}
+.lcg-itemstbl{width:100%;border-collapse:collapse;margin:10px 0;}
+.lcg-itemstbl th{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:500;
+  font-size:10px;text-transform:uppercase;letter-spacing:.02em;padding:7px 6px;text-align:left;}
+.lcg-itemstbl td{border:1px solid var(--border);padding:5px 6px;font-size:10.5px;vertical-align:top;}
+.lcg-itemstbl tr:nth-child(even) td{background:var(--bg);}
+.lcg-itemstbl td.num{text-align:right;white-space:nowrap;}
+.lcg-bottom{display:flex;justify-content:space-between;gap:14px;margin-top:6px;}
+.lcg-cliente{font-size:10.5px;line-height:1.7;}
+.lcg-cliente b{font-family:'Poppins',sans-serif;color:var(--navy);}
+.lcg-totals{min-width:220px;}
+.lcg-totals table{width:100%;border-collapse:collapse;}
+.lcg-totals td{padding:6px 8px;font-size:11px;border:1px solid var(--border);}
+.lcg-totals td.k{font-family:'Poppins',sans-serif;text-align:right;font-weight:600;color:var(--navy);}
+.lcg-totals td.v{text-align:right;width:90px;}
+.lcg-totals tr.total td{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:12.5px;}
+.lcg-firma{margin-top:34px;text-align:right;font-size:10.5px;line-height:1.5;}
+.lcg-firma .linea{border-top:1px solid #333;width:180px;margin-left:auto;margin-bottom:4px;margin-top:26px;}
+.lcg-docfooter{margin-top:22px;padding:10px 0;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;font-size:9.5px;color:var(--text-muted);}
+.lcg-docfooter b{color:var(--navy);font-family:'Poppins',sans-serif;}
+
+/* Registro */
+.lcg-reg-toolbar{display:flex;gap:10px;margin-bottom:12px;align-items:center;}
+.lcg-reg-toolbar input{flex:1;max-width:320px;}
+table.lcg-reg{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+table.lcg-reg th{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:500;
+  font-size:11.5px;text-transform:uppercase;text-align:left;padding:9px 10px;}
+table.lcg-reg td{padding:9px 10px;font-size:12.5px;border-bottom:1px solid var(--border);}
+table.lcg-reg tr:last-child td{border-bottom:none;}
+table.lcg-reg tr:hover td{background:#F7FAFC;}
+.lcg-reg-empty{padding:30px;text-align:center;color:var(--text-muted);font-size:13px;}
+.lcg-link{background:none;border:none;color:var(--navy);text-decoration:underline;cursor:pointer;font-size:12.5px;padding:0;}
+.lcg-badge{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:10px;
+  background:#E6F1FB;color:var(--navy);}
+
+/* Modal */
+.lcg-modal-overlay{position:fixed;inset:0;background:rgba(11,42,74,.55);display:none;
+  align-items:center;justify-content:center;z-index:1000;padding:20px;}
+.lcg-modal-overlay.open{display:flex;}
+.lcg-modal{background:#fff;border-radius:12px;padding:22px;max-width:520px;width:100%;
+  max-height:85vh;overflow:auto;}
+.lcg-modal h3{font-family:'Poppins',sans-serif;color:var(--navy);margin:0 0 6px;font-size:16px;}
+.lcg-modal p.desc{font-size:12.5px;color:var(--text-muted);margin:0 0 16px;}
+.lcg-modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}
+.lcg-manage-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;margin-bottom:8px;align-items:center;}
+.lcg-manage-row input{padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-size:12.5px;}
+
+/* Conexión SharePoint */
+.lcg-connect{background:#fff;border:1px dashed var(--border);border-radius:10px;padding:18px;margin-top:6px;}
+.lcg-connect summary{font-family:'Poppins',sans-serif;font-weight:600;color:var(--navy);cursor:pointer;font-size:13.5px;}
+.lcg-connect .body{margin-top:14px;}
+.lcg-connect .note{background:var(--bg);border-radius:8px;padding:10px 12px;font-size:11.5px;
+  color:var(--text-muted);margin-top:10px;line-height:1.6;}
+
+@media print{
+  body *{visibility:hidden;}
+  #lcg-doc,#lcg-doc *,.lcg-topbar{visibility:visible;}
+  .lcg-topbar{position:absolute;top:0;left:0;width:100%;height:5px;}
+  #lcg-doc{position:absolute;top:5px;left:0;width:100%;padding:10mm 12mm 0;}
+  .lcg-preview-wrap{border:none;position:static;}
+}
+</style>
+
+<div class="lcg-app">
+
+  <div class="lcg-header">
+    <div class="lcg-brand">
+      <div class="lcg-logo"><div class="word1">LACRUZ</div><div class="word2row">
+        <div class="lcg-dotgrid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="word2">GROUP</div></div></div>
+      <div class="lcg-apptitle">GENERADOR DE OC</div>
+    </div>
+    <div class="lcg-status"><span class="dot"></span><span id="status-text">Registro compartido: conectado</span></div>
+    <div class="lcg-actions-bar">
+      <button class="lcg-iconbtn" id="btn-nueva">✦ Nueva</button>
+      <button class="lcg-iconbtn" id="btn-borrador">⭳ Borrador</button>
+      <button class="lcg-iconbtn" id="btn-abrir">⭱ Abrir</button>
+      <button class="lcg-iconbtn" id="btn-vistaprevia">👁 Vista previa</button>
+      <button class="lcg-iconbtn" id="btn-imprimir">⎙ Guardar PDF</button>
+      <button class="lcg-iconbtn" id="btn-enviar">✉ Enviar</button>
+      <button class="lcg-iconbtn primary" id="btn-guardar">✓ Generar OC</button>
+    </div>
+  </div>
+
+  <div class="lcg-tabs">
+    <button class="lcg-tab active" data-tab="nueva">Nueva orden de compra</button>
+    <button class="lcg-tab" data-tab="registro">Registro de órdenes</button>
+  </div>
+
+  <div class="lcg-body">
+  <!-- ===================== VISTA: NUEVA OC ===================== -->
+  <div class="lcg-view active" id="view-nueva">
+    <div class="lcg-grid">
+      <!-- FORM -->
+      <div>
+        <div class="lcg-panel">
+          <h3><span class="lcg-secnum">1</span> Datos de la orden
+            <button class="lcg-gestionar" id="btn-gestionar-consultores">⚙ gestionar consultores</button></h3>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Consultor</label><select id="f-consultor"></select></div>
+            <div class="lcg-field"><label>Fecha de emisión</label><input id="f-fecha" type="date"></div>
+          </div>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Moneda</label>
+              <select id="f-moneda"><option value="$">Dólares (USD)</option><option value="S/">Soles (PEN)</option></select>
+            </div>
+            <div class="lcg-field"><label>IGV %</label><input id="f-igv" type="number" value="18" step="0.5"></div>
+          </div>
+        </div>
+
+        <div class="lcg-panel">
+          <h3><span class="lcg-secnum">2</span> Mayorista (proveedor)
+            <button class="lcg-gestionar" id="btn-gestionar-mayoristas">⚙ gestionar mayoristas</button></h3>
+          <div class="lcg-field">
+            <label>Buscar empresa</label>
+            <select id="f-mayorista"></select>
+          </div>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Atención (contacto)</label><input id="f-m-contacto"></div>
+            <div class="lcg-field"><label>Correo</label><input id="f-m-correo"></div>
+          </div>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Teléfono</label><input id="f-m-telefono"></div>
+            <div class="lcg-field"><label>RUC</label><input id="f-m-ruc"></div>
+          </div>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Dirección</label><input id="f-m-direccion"></div>
+            <div class="lcg-field"><label>Distrito</label><input id="f-m-distrito"></div>
+          </div>
+        </div>
+
+        <div class="lcg-panel">
+          <h3><span class="lcg-secnum">3</span> Cliente final <span style="font-weight:400;font-size:11px;color:var(--text-muted);margin-left:4px">(para quién es la compra)</span></h3>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Razón social</label><input id="f-c-razon" list="clientes-datalist" placeholder="Ej. La Casa de las Carcasas" autocomplete="off"></div>
+            <datalist id="clientes-datalist"></datalist>
+            <div class="lcg-field"><label>RUC</label><input id="f-c-ruc"></div>
+          </div>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Contacto</label><input id="f-c-contacto"></div>
+            <div class="lcg-field"><label>Correo</label><input id="f-c-correo"></div>
+          </div>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Celular</label><input id="f-c-cel"></div>
+            <div class="lcg-field"><label>Forma de pago</label>
+              <select id="f-formapago">
+                <option>Contado</option>
+                <option>Línea de Crédito</option>
+                <option>Crédito 15 días</option>
+                <option>Crédito 30 días</option>
+                <option>Crédito 45 días</option>
+                <option>Crédito 60 días</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="lcg-panel">
+          <h3><span class="lcg-secnum">4</span> Productos y servicios</h3>
+          <table class="lcg-items">
+            <thead><tr>
+              <th style="width:34%">Descripción</th><th style="width:16%">PN</th>
+              <th style="width:14%">Precio unit.</th><th style="width:10%">Cant.</th>
+              <th style="width:16%">Precio</th><th></th>
+            </tr></thead>
+            <tbody id="f-items"></tbody>
+          </table>
+          <button class="lcg-btn" id="btn-add-item" type="button">＋ Agregar producto</button>
+        </div>
+
+        <div class="lcg-resumen">
+          <h3>Resumen</h3>
+          <div class="lcg-resumen-row"><span>Subtotal (sin IGV)</span><span id="r-subtotal">—</span></div>
+          <div class="lcg-resumen-row"><span id="r-igv-label">IGV (18%)</span><span id="r-igv">—</span></div>
+          <div class="lcg-resumen-row total"><span>TOTAL</span><span id="r-total">—</span></div>
+        </div>
+
+        <div class="lcg-hint" id="estado-guardado"></div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="lcg-preview-wrap">
+        <div class="lcg-topbar"></div>
+        <div id="lcg-doc"></div>
+      </div>
+    </div>
+
+    <details class="lcg-connect" id="sp-panel">
+      <summary>☁ Conexión con SharePoint — sitio "04.COMERCIAL" <span id="sp-status-inline">(desconectado)</span></summary>
+      <div class="body">
+        <p class="lcg-hint" style="margin-top:0">Conectado: Mayoristas se lee en vivo desde <b>LCG_Mayoristas</b>, Cliente final desde <b>LCG-CLIENTES</b>, y cada "Generar OC" registra automáticamente el resumen en <b>LCG_Historial_OC</b> y el detalle por producto en <b>LCG_Detalle_OC</b>.</p>
+        <div class="lcg-row2">
+          <div class="lcg-field"><label>Client ID (app registrada en Entra ID)</label><input id="sp-client-id"></div>
+          <div class="lcg-field"><label>Tenant (ej. lacruzgroup.onmicrosoft.com)</label><input id="sp-tenant"></div>
+        </div>
+        <div class="lcg-row2">
+          <div class="lcg-field"><label>Hostname del sitio</label><input id="sp-host" value="lacruzgroup.sharepoint.com"></div>
+          <div class="lcg-field"><label>Ruta del sitio</label><input id="sp-path" value="/sites/04.COMERCIAL"></div>
+        </div>
+        <div class="lcg-row3">
+          <div class="lcg-field"><label>Lista Mayoristas</label><input id="sp-list-mayoristas" value="LCG_Mayoristas"></div>
+          <div class="lcg-field"><label>Lista Clientes</label><input id="sp-list-clientes" value="LCG-CLIENTES"></div>
+          <div class="lcg-field"><label>Lista Historial OC</label><input id="sp-list-historial" value="LCG_Historial_OC"></div>
+        </div>
+        <div class="lcg-field" style="max-width:260px"><label>Lista Detalle OC</label><input id="sp-list-detalle" value="LCG_Detalle_OC"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px">
+          <button class="lcg-btn" id="btn-sp-guardar">Guardar configuración</button>
+          <button class="lcg-btn lcg-btn-primary" id="btn-sp-conectar">🔐 Conectar con Microsoft</button>
+          <button class="lcg-btn lcg-btn-ghost" id="btn-sp-desconectar" style="display:none">Desconectar</button>
+        </div>
+        <div class="lcg-hint" id="sp-msg"></div>
+        <div class="note">Sin esta conexión, el generador sigue funcionando en modo local con los mayoristas precargados y el registro compartido de este artifact — tal como hasta ahora. La conexión requiere que este archivo esté alojado fuera del sandbox de Claude (por ejemplo, en el mismo GitHub Pages que el cotizador) para que el login de Microsoft funcione correctamente.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===================== VISTA: REGISTRO ===================== -->
+  <div class="lcg-view" id="view-registro">
+    <div class="lcg-reg-toolbar">
+      <input id="reg-search" placeholder="Buscar por número, mayorista, cliente o consultor...">
+      <span class="lcg-hint" id="reg-count"></span>
+    </div>
+    <div id="reg-table-wrap"></div>
+  </div>
+  </div>
+</div>
+
+<!-- Modal: gestionar consultores -->
+<div class="lcg-modal-overlay" id="modal-consultores">
+  <div class="lcg-modal">
+    <h3>Pool de consultores</h3>
+    <p class="desc">Se guarda en el registro compartido — el cambio aplica para todo el equipo al instante.</p>
+    <div id="consultores-rows"></div>
+    <button class="lcg-btn" id="btn-add-consultor" type="button">＋ Agregar</button>
+    <div class="lcg-modal-actions">
+      <button class="lcg-btn" id="btn-cancel-consultores">Cancelar</button>
+      <button class="lcg-btn lcg-btn-primary" id="btn-save-consultores">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: gestionar mayoristas -->
+<div class="lcg-modal-overlay" id="modal-mayoristas">
+  <div class="lcg-modal" style="max-width:760px">
+    <h3>Proveedores / Mayoristas</h3>
+    <p class="desc">Se guarda en el registro compartido — el cambio aplica para todo el equipo al instante.</p>
+    <div id="mayoristas-rows" style="max-height:340px;overflow:auto"></div>
+    <button class="lcg-btn" id="btn-add-mayorista" type="button">＋ Agregar</button>
+    <div class="lcg-modal-actions">
+      <button class="lcg-btn" id="btn-cancel-mayoristas">Cancelar</button>
+      <button class="lcg-btn lcg-btn-primary" id="btn-save-mayoristas">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: abrir -->
+<div class="lcg-modal-overlay" id="modal-abrir">
+  <div class="lcg-modal">
+    <h3>Abrir</h3>
+    <p class="desc">Retoma tu borrador local o una orden ya generada del registro.</p>
+    <div id="abrir-draft-row"></div>
+    <div class="lcg-hint" style="margin:10px 0">Órdenes recientes del registro:</div>
+    <div id="abrir-registro-rows" style="max-height:260px;overflow:auto"></div>
+    <div class="lcg-modal-actions">
+      <button class="lcg-btn" id="btn-cerrar-abrir">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: enviar -->
+<div class="lcg-modal-overlay" id="modal-enviar">
+  <div class="lcg-modal">
+    <h3>Enviar orden de compra</h3>
+    <p class="desc">Recuerda primero <b>⎙ Guardar PDF</b> y adjuntarlo en el correo o chat — estos enlaces solo arman el mensaje.</p>
+    <div class="lcg-field"><label>Correo del mayorista</label><input id="enviar-correo"></div>
+    <div class="lcg-field"><label>WhatsApp (con código de país)</label><input id="enviar-whatsapp" placeholder="+51 9XX XXX XXX"></div>
+    <div class="lcg-modal-actions">
+      <button class="lcg-btn" id="btn-cerrar-enviar">Cerrar</button>
+      <a class="lcg-btn" id="link-whatsapp" target="_blank">🟢 WhatsApp</a>
+      <a class="lcg-btn lcg-btn-primary" id="link-correo">✉ Correo</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: vista previa -->
+<div class="lcg-modal-overlay" id="modal-vistaprevia">
+  <div class="lcg-modal" style="max-width:800px;padding:0;background:var(--bg)">
+    <div style="display:flex;justify-content:flex-end;gap:8px;padding:14px 18px 0">
+      <button class="lcg-btn" id="btn-vp-imprimir">⎙ Guardar PDF</button>
+      <button class="lcg-btn lcg-btn-primary" id="btn-cerrar-vistaprevia">Cerrar</button>
+    </div>
+    <div style="background:#fff;margin:14px 18px 18px;border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <div class="lcg-topbar"></div>
+      <div id="vp-doc-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3/lib/msal-browser.min.js"></script>
+<script>
+(function(){
+
+const DEFAULT_CONSULTORES = [
+  {nombre:'Jaime La Cruz', celular:'962 281 473', correo:'jaime.lacruz@lacruzgroup.com'},
+  {nombre:'Vicente Fukuda', celular:'977 540 932', correo:'vicente.fukuda@lacruzgroup.com'},
+  {nombre:'Gaby Chinchano', celular:'933 314 985', correo:'gaby.chinchano@lacruzgroup.com'},
+];
+
+const DEFAULT_MAYORISTAS = [
+  {nombre:'NEXSYS del Perú', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', contacto:'Bryan Gonzales', correo:'Comercial3.Pe@nexsysla.com', telefono:'+51 936 040 378'},
+  {nombre:'GRUPO DELTRON S.A.', distrito:'La Victoria', direccion:'Cal. Raul Rebagliati Nro. 170', ruc:'20212331377', contacto:'Marco Velazco', correo:'marco.velazco@deltron.com.pe', telefono:'+51 960 125 485'},
+  {nombre:'ADISTEC', distrito:'San Isidro', direccion:'Av. Víctor Andrés Belaunde Nro. 181 Int. 602B', ruc:'20536105523', contacto:'Adrian Wong', correo:'awong@adistec.com', telefono:'+51 997 049 120'},
+  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', contacto:'Jhon Carmelo Moreno', correo:'jhon.carmelo@ingrammicro.com', telefono:'+51 962 381 496'},
+  {nombre:'Licencias Online', distrito:'Santiago de Surco', direccion:'AV. EL DERBY 254 OFICINA 1505', ruc:'20509268691', contacto:'Julissa Murguerza', correo:'jmurguerza@licenciasonline.com', telefono:'+51 997 579 979'},
+  {nombre:'INTCOMEX PERÚ', distrito:'Surquillo', direccion:'CAL. LOS NEGOCIOS URB. LIMATAMBO 448', ruc:'20254507874', contacto:'Renzzo Gozar', correo:'activaciones@intcomexperu.com', telefono:'+51 924 985 518'},
+  {nombre:'NEXSYS', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', contacto:'Giancarlo Campo', correo:'giancarlo.campos@nexsysla.com', telefono:'+51 933 801 087'},
+  {nombre:'IT DACAS PERU SAC', distrito:'Miraflores', direccion:'Av. Tomas Marsano Nro. 2570', ruc:'2054707014', contacto:'Giancarlo Campos', correo:'gcampos@dacas.com', telefono:'+51 993 801 087'},
+  {nombre:'INFINYCORE PERU SAC', distrito:'San Isidro', direccion:'Av. Jorge Basadre 604, Oficina 428', ruc:'20609986493', contacto:'Milagros Cuadros', correo:'milagrosc@infinycore.com', telefono:'+51 925 725 483'},
+  {nombre:'EBSCORP', distrito:'SJL', direccion:'Av. Próceres de la Independencia 2836', ruc:'20478089440', contacto:'Jean Paul Maicelo', correo:'jmaicelo@corp-ebs.com', telefono:'+51 982 710 014'},
+];
+
+const LACRUZ = {ruc:'20609011549', direccion:'Calle German Schereiber 276. INT 240', correo:'ventas@lacruzgroup.com'};
+const K_REGISTRO = 'lcg_oc_registro';
+const K_CONSULTORES = 'lcg_oc_consultores';
+const K_MAYORISTAS = 'lcg_oc_mayoristas';
+const K_BORRADOR = 'lcg_oc_borrador';
+const K_SPCONFIG = 'lcg_oc_sp_config';
+const money = n => (isNaN(n)?0:n).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+let registro = [];
+let CONSULTORES = DEFAULT_CONSULTORES.slice();
+let MAYORISTAS = DEFAULT_MAYORISTAS.slice();
+let CLIENTES = [];
+let items = [];
+let itemSeq = 0;
+let currentDraftNumero = null;
+
+/* ---------- Microsoft Graph / SharePoint ---------- */
+let msalApp = null;
+let graphSiteId = null;
+let graphListIds = {};
+let spConnected = false;
+
+function uid(){ itemSeq++; return 'it'+itemSeq; }
+function escAttr(s){ return String(s==null?'':s).replace(/"/g,'&quot;'); }
+function escHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ---------- items ---------- */
+function addItemRow(vals){
+  vals = vals || {};
+  const id = uid();
+  items.push({id, desc: vals.desc||'', pn: vals.pn||'', precio: vals.precio!=null?vals.precio:'', cant: vals.cant!=null?vals.cant:''});
+  renderItemsForm();
+}
+function removeItemRow(id){
+  items = items.filter(i=>i.id!==id);
+  if(items.length===0) addItemRow();
+  else renderItemsForm();
+}
+function renderItemsForm(){
+  const tbody = document.getElementById('f-items');
+  tbody.innerHTML = '';
+  items.forEach((it)=>{
+    const tr = document.createElement('tr');
+    const precioNum = parseFloat(it.precio)||0;
+    const cantNum = parseFloat(it.cant)||0;
+    const total = precioNum*cantNum;
+    tr.innerHTML =
+      '<td><input data-id="'+it.id+'" data-f="desc" value="'+escAttr(it.desc)+'"></td>'+
+      '<td><input data-id="'+it.id+'" data-f="pn" value="'+escAttr(it.pn)+'"></td>'+
+      '<td><input data-id="'+it.id+'" data-f="precio" type="number" step="0.01" value="'+escAttr(it.precio)+'" class="num"></td>'+
+      '<td><input data-id="'+it.id+'" data-f="cant" type="number" step="1" value="'+escAttr(it.cant)+'" class="num"></td>'+
+      '<td class="num" style="padding-top:9px">'+money(total)+'</td>'+
+      '<td><button type="button" class="lcg-del" data-del="'+it.id+'">&times;</button></td>';
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('input').forEach(inp=>{
+    inp.addEventListener('input', e=>{
+      const id = e.target.getAttribute('data-id');
+      const f = e.target.getAttribute('data-f');
+      const item = items.find(i=>i.id===id);
+      item[f] = e.target.value;
+      renderItemsForm();
+      renderPreview();
+    });
+  });
+  tbody.querySelectorAll('[data-del]').forEach(btn=>{
+    btn.addEventListener('click', ()=> removeItemRow(btn.getAttribute('data-del')) );
+  });
+  renderPreview();
+}
+
+/* ---------- selects ---------- */
+function fillSelect(sel, options, labelFn, keepValue){
+  const prev = keepValue ? sel.value : null;
+  sel.innerHTML = options.map((o,i)=>'<option value="'+i+'">'+escHtml(labelFn(o))+'</option>').join('') + '<option value="otro">+ Otro (ingresar manualmente)</option>';
+  if(prev!=null && [...sel.options].some(o=>o.value===prev)) sel.value = prev;
+}
+
+function initForm(){
+  const selCons = document.getElementById('f-consultor');
+  fillSelect(selCons, CONSULTORES, c=>c.nombre);
+  selCons.selectedIndex = 0;
+
+  const selMay = document.getElementById('f-mayorista');
+  fillSelect(selMay, MAYORISTAS, m=>m.nombre);
+  selMay.addEventListener('change', ()=>{
+    if(selMay.value==='otro'){
+      ['f-m-contacto','f-m-correo','f-m-telefono','f-m-ruc','f-m-direccion','f-m-distrito'].forEach(id=>document.getElementById(id).value='');
+    } else {
+      const m = MAYORISTAS[+selMay.value];
+      document.getElementById('f-m-contacto').value = m.contacto;
+      document.getElementById('f-m-correo').value = m.correo;
+      document.getElementById('f-m-telefono').value = m.telefono;
+      document.getElementById('f-m-ruc').value = m.ruc;
+      document.getElementById('f-m-direccion').value = m.direccion;
+      document.getElementById('f-m-distrito').value = m.distrito;
+    }
+    renderPreview();
+  });
+  selMay.dispatchEvent(new Event('change'));
+
+  document.getElementById('f-fecha').value = new Date().toISOString().slice(0,10);
+
+  ['f-c-razon','f-c-ruc','f-c-contacto','f-c-correo','f-c-cel','f-formapago','f-moneda','f-igv','f-fecha',
+   'f-m-contacto','f-m-correo','f-m-telefono','f-m-ruc','f-m-direccion','f-m-distrito','f-consultor']
+   .forEach(id=> document.getElementById(id).addEventListener('input', renderPreview) );
+
+  document.getElementById('f-c-razon').addEventListener('change', ()=>{
+    const match = buscarClientePorRazon(document.getElementById('f-c-razon').value);
+    if(match){
+      document.getElementById('f-c-ruc').value = match.ruc;
+      document.getElementById('f-c-contacto').value = match.contacto;
+      document.getElementById('f-c-correo').value = match.correo;
+      document.getElementById('f-c-cel').value = match.cel;
+      renderPreview();
+    }
+  });
+
+  document.getElementById('btn-add-item').addEventListener('click', ()=>addItemRow());
+  addItemRow();
+
+  document.getElementById('btn-guardar').addEventListener('click', guardarOrden);
+  document.getElementById('btn-imprimir').addEventListener('click', ()=>{ window.print(); });
+  document.getElementById('btn-vistaprevia').addEventListener('click', abrirModalVistaPrevia);
+  document.getElementById('btn-nueva').addEventListener('click', resetForm);
+  document.getElementById('btn-borrador').addEventListener('click', guardarBorrador);
+  document.getElementById('btn-abrir').addEventListener('click', abrirModalAbrir);
+  document.getElementById('btn-enviar').addEventListener('click', abrirModalEnviar);
+}
+
+function currentConsultor(){ return CONSULTORES[+document.getElementById('f-consultor').value] || CONSULTORES[0]; }
+
+function computeTotals(){
+  const subtotal = items.reduce((s,it)=> s + (parseFloat(it.precio)||0)*(parseFloat(it.cant)||0), 0);
+  const igvPct = parseFloat(document.getElementById('f-igv').value)||0;
+  const igv = subtotal * igvPct/100;
+  return {subtotal, igv, total: subtotal+igv, igvPct};
+}
+
+function draftNumeroPreview(){ return currentDraftNumero || '(se asigna al generar)'; }
+
+function renderPreview(){
+  const cur = currentConsultor();
+  const moneda = document.getElementById('f-moneda').value;
+  const t = computeTotals();
+  const razonCliente = document.getElementById('f-c-razon').value;
+
+  document.getElementById('r-subtotal').textContent = moneda+' '+money(t.subtotal);
+  document.getElementById('r-igv-label').textContent = 'IGV ('+t.igvPct+'%)';
+  document.getElementById('r-igv').textContent = moneda+' '+money(t.igv);
+  document.getElementById('r-total').textContent = moneda+' '+money(t.total);
+
+  const rows = items.map((it,i)=>{
+    const precioNum = parseFloat(it.precio)||0;
+    const cantNum = parseFloat(it.cant)||0;
+    return '<tr>'+
+      '<td>'+(i+1)+'</td>'+
+      '<td>'+escHtml(it.desc)+'</td>'+
+      '<td>'+escHtml(it.pn)+'</td>'+
+      '<td class="num">'+moneda+' '+money(precioNum)+'</td>'+
+      '<td class="num">'+(cantNum||0)+'</td>'+
+      '<td class="num">'+moneda+' '+money(precioNum*cantNum)+'</td>'+
+      '</tr>';
+  }).join('');
+
+  const mayoristaSel = document.getElementById('f-mayorista');
+  const mayoristaNombre = mayoristaSel.selectedOptions[0].text.replace('+ ','');
+
+  document.getElementById('lcg-doc').innerHTML =
+  '<div class="lcg-doc-header">'+
+    '<div class="lcg-doclogo"><div class="word1">LACRUZ</div><div class="word2row">'+
+      '<div class="lcg-dotgrid"><span></span><span></span><span></span><span></span><span></span><span></span></div>'+
+      '<div class="word2">GROUP</div></div></div>'+
+    '<div class="lcg-doc-title">ORDEN DE COMPRA: '+escHtml(draftNumeroPreview())+'</div>'+
+  '</div>'+
+  '<div class="lcg-razon">LACRUZ TECHNOLOGIES GROUP SACS</div>'+
+  '<table class="lcg-infoblock"><tr><td class="k">RUC</td><td class="v">'+LACRUZ.ruc+'</td><td class="k">CONSULTOR</td><td class="v">'+escHtml(cur.nombre)+'</td></tr>'+
+  '<tr><td class="k">DIRECCIÓN</td><td class="v">'+LACRUZ.direccion+'</td><td class="k">CELULAR</td><td class="v">'+escHtml(cur.celular)+'</td></tr>'+
+  '<tr><td class="k">CORREO</td><td class="v">'+LACRUZ.correo+'</td><td class="k">CORREO</td><td class="v">'+escHtml(cur.correo)+'</td></tr></table>'+
+
+  '<table class="lcg-infoblock"><tr><td class="k">SEÑORES</td><td class="v" colspan="3" style="text-align:center"><b>'+escHtml(mayoristaNombre)+'</b></td></tr>'+
+  '<tr><td class="k">ATENCIÓN</td><td class="v">'+escHtml(document.getElementById('f-m-contacto').value)+'</td><td class="k">RUC</td><td class="v">'+escHtml(document.getElementById('f-m-ruc').value)+'</td></tr>'+
+  '<tr><td class="k">CORREO</td><td class="v">'+escHtml(document.getElementById('f-m-correo').value)+'</td><td class="k">DIRECCIÓN</td><td class="v">'+escHtml(document.getElementById('f-m-direccion').value)+'</td></tr>'+
+  '<tr><td class="k">TELÉFONO</td><td class="v">'+escHtml(document.getElementById('f-m-telefono').value)+'</td><td class="k">DISTRITO</td><td class="v">'+escHtml(document.getElementById('f-m-distrito').value)+'</td></tr></table>'+
+
+  '<table class="lcg-itemstbl"><thead><tr><th>N.º</th><th>Descripción</th><th>PN</th><th>Precio unit.</th><th>Cant.</th><th>Precio</th></tr></thead>'+
+  '<tbody>'+rows+'</tbody></table>'+
+
+  '<div class="lcg-bottom">'+
+    '<div class="lcg-cliente"><b>DATOS DEL CLIENTE:</b><br>'+
+      'RAZÓN: '+escHtml(razonCliente)+'<br>'+
+      'RUC: '+escHtml(document.getElementById('f-c-ruc').value)+'<br>'+
+      'CONTACTO: '+escHtml(document.getElementById('f-c-contacto').value)+'<br>'+
+      'CORREO: '+escHtml(document.getElementById('f-c-correo').value)+'<br>'+
+      'CEL: '+escHtml(document.getElementById('f-c-cel').value)+'<br>'+
+      'FORMA DE PAGO: '+escHtml(document.getElementById('f-formapago').value)+
+    '</div>'+
+    '<div class="lcg-totals"><table>'+
+      '<tr><td class="k">SUB-TOTAL</td><td class="v">'+moneda+' '+money(t.subtotal)+'</td></tr>'+
+      '<tr><td class="k">IGV ('+t.igvPct+'%)</td><td class="v">'+moneda+' '+money(t.igv)+'</td></tr>'+
+      '<tr class="total"><td class="k">TOTAL</td><td class="v">'+moneda+' '+money(t.total)+'</td></tr>'+
+    '</table></div>'+
+  '</div>'+
+  '<div class="lcg-firma"><div class="linea"></div>'+escHtml(cur.nombre)+' Orbe<br>Gerente Comercial<br>LACRUZ TECHNOLOGIES GROUP SACS</div>'+
+  '<div class="lcg-docfooter"><span><b>LACRUZ TECHNOLOGIES GROUP S.A.C.</b> · www.lacruzgroup.com</span>'+
+  '<span>'+LACRUZ.direccion+', San Isidro - Lima, Perú</span></div>';
+}
+
+function resetForm(){
+  currentDraftNumero = null;
+  items = [];
+  document.getElementById('f-c-razon').value='';
+  document.getElementById('f-c-ruc').value='';
+  document.getElementById('f-c-contacto').value='';
+  document.getElementById('f-c-correo').value='';
+  document.getElementById('f-c-cel').value='';
+  document.getElementById('f-fecha').value = new Date().toISOString().slice(0,10);
+  document.getElementById('estado-guardado').textContent='';
+  addItemRow();
+  document.getElementById('f-mayorista').dispatchEvent(new Event('change'));
+}
+
+function nextNumero(){
+  const year = new Date().getFullYear().toString().slice(-2);
+  const nums = registro
+    .filter(o=>o.numero && o.numero.startsWith(year+'-'))
+    .map(o=> parseInt(o.numero.split('-')[1],10) || 0);
+  const next = (nums.length? Math.max(...nums) : 0) + 1;
+  return year+'-'+String(next).padStart(5,'0');
+}
+
+/* ---------- storage ---------- */
+async function loadShared(key, fallback){
+  try{
+    const res = await window.storage.get(key, true);
+    return res && res.value ? JSON.parse(res.value) : fallback;
+  }catch(e){ return fallback; }
+}
+async function saveShared(key, value){
+  try{ await window.storage.set(key, JSON.stringify(value), true); return true; }
+  catch(e){ return false; }
+}
+
+async function loadSpConfig(){
+  try{
+    const res = await window.storage.get(K_SPCONFIG, false);
+    return res && res.value ? JSON.parse(res.value) : null;
+  }catch(e){ return null; }
+}
+function readSpConfigFromForm(){
+  return {
+    clientId: document.getElementById('sp-client-id').value.trim(),
+    tenant: document.getElementById('sp-tenant').value.trim(),
+    host: document.getElementById('sp-host').value.trim(),
+    path: document.getElementById('sp-path').value.trim(),
+    listMayoristas: document.getElementById('sp-list-mayoristas').value.trim(),
+    listClientes: document.getElementById('sp-list-clientes').value.trim(),
+    listHistorial: document.getElementById('sp-list-historial').value.trim(),
+    listDetalle: document.getElementById('sp-list-detalle').value.trim(),
+  };
+}
+function fillSpConfigForm(cfg){
+  if(!cfg) return;
+  const map = {clientId:'sp-client-id', tenant:'sp-tenant', host:'sp-host', path:'sp-path',
+    listMayoristas:'sp-list-mayoristas', listClientes:'sp-list-clientes',
+    listHistorial:'sp-list-historial', listDetalle:'sp-list-detalle'};
+  Object.keys(map).forEach(k=>{ if(cfg[k]!=null) document.getElementById(map[k]).value = cfg[k]; });
+}
+
+const GRAPH_SCOPES = ['Sites.ReadWrite.All'];
+
+function getMsalApp(cfg){
+  if(!window.msal){ throw new Error('La librería MSAL no cargó (revisa conexión a internet / CDN).'); }
+  if(!msalApp){
+    msalApp = new msal.PublicClientApplication({
+      auth: {
+        clientId: cfg.clientId,
+        authority: 'https://login.microsoftonline.com/'+cfg.tenant,
+        redirectUri: window.location.origin + window.location.pathname,
+      },
+      cache: { cacheLocation: 'localStorage' },
+    });
+  }
+  return msalApp;
+}
+
+async function graphToken(){
+  const cfg = await loadSpConfig();
+  const app = getMsalApp(cfg);
+  let account = app.getActiveAccount();
+  if(!account){
+    const accs = app.getAllAccounts();
+    if(accs.length){ account = accs[0]; app.setActiveAccount(account); }
+  }
+  if(!account) throw new Error('No hay sesión activa. Pulsa "Conectar con Microsoft" primero.');
+  try{
+    const r = await app.acquireTokenSilent({ scopes: GRAPH_SCOPES, account });
+    return r.accessToken;
+  }catch(e){
+    const r = await app.acquireTokenPopup({ scopes: GRAPH_SCOPES });
+    return r.accessToken;
+  }
+}
+
+async function graphFetch(url, options){
+  const token = await graphToken();
+  const res = await fetch(url, Object.assign({}, options, {
+    headers: Object.assign({ 'Authorization':'Bearer '+token, 'Content-Type':'application/json' }, (options&&options.headers)||{})
+  }));
+  if(!res.ok){
+    const txt = await res.text().catch(()=>'');
+    throw new Error('Graph '+res.status+': '+txt.slice(0,200));
+  }
+  return res.status===204 ? null : res.json();
+}
+
+async function graphGetAllItems(siteId, listId){
+  let url = 'https://graph.microsoft.com/v1.0/sites/'+siteId+'/lists/'+listId+'/items?expand=fields&$top=200';
+  const out = [];
+  while(url){
+    const page = await graphFetch(url);
+    out.push(...(page.value||[]));
+    url = page['@odata.nextLink'] || null;
+  }
+  return out;
+}
+
+async function ensureSiteAndLists(cfg){
+  if(!graphSiteId){
+    const site = await graphFetch('https://graph.microsoft.com/v1.0/sites/'+cfg.host+':'+cfg.path);
+    graphSiteId = site.id;
+  }
+  const needed = {mayoristas: cfg.listMayoristas, clientes: cfg.listClientes, historial: cfg.listHistorial, detalle: cfg.listDetalle};
+  const missing = Object.keys(needed).filter(k=>!graphListIds[k]);
+  let allLists = null;
+  if(missing.length){
+    allLists = await graphFetch('https://graph.microsoft.com/v1.0/sites/'+graphSiteId+'/lists?$select=id,displayName,name&$top=200');
+    missing.forEach(k=>{
+      const target = (needed[k]||'').toLowerCase();
+      const match = (allLists.value||[]).find(l=> (l.displayName||'').toLowerCase()===target || (l.name||'').toLowerCase()===target);
+      if(match) graphListIds[k] = match.id;
+    });
+  }
+  const stillMissing = Object.keys(needed).filter(k=>!graphListIds[k]);
+  return { ids: graphListIds, stillMissing, needed, realNames: allLists ? (allLists.value||[]).map(l=>l.displayName) : null };
+}
+
+async function conectarMicrosoft(){
+  const msg = document.getElementById('sp-msg');
+  try{
+    const cfg = readSpConfigFromForm();
+    if(!cfg.clientId || !cfg.tenant){ msg.textContent = 'Completa Client ID y Tenant antes de conectar.'; return; }
+    await window.storage.set(K_SPCONFIG, JSON.stringify(cfg), false);
+    const app = getMsalApp(cfg);
+    const resp = await app.loginPopup({ scopes: GRAPH_SCOPES });
+    app.setActiveAccount(resp.account);
+    msg.textContent = 'Conectado como '+resp.account.username+'. Buscando las listas en el sitio...';
+    const check = await ensureSiteAndLists(cfg);
+    if(check.stillMissing.length){
+      const faltantes = check.stillMissing.map(k=>'"'+check.needed[k]+'"').join(', ');
+      msg.textContent = 'Conectado, pero no encontré estas listas en el sitio: '+faltantes+
+        '. Listas reales que sí ve en ese sitio: '+(check.realNames?check.realNames.join(', '):'(no se pudo listar)')+
+        '. Revisa que el nombre en el panel de configuración sea idéntico, letra por letra, al de SharePoint.';
+      spConnected = false;
+      setSpUiConnected(false);
+      return;
+    }
+    const resumen = await sincronizarMayoristasYClientes();
+    spConnected = true;
+    setSpUiConnected(true, resp.account.username);
+    msg.textContent = 'Conectado como '+resp.account.username+'. Cargados '+resumen.mayoristasCount+' mayoristas y '+resumen.clientesCount+' clientes desde SharePoint.';
+  }catch(e){
+    msg.textContent = 'No se pudo conectar: '+e.message;
+    spConnected = false;
+    setSpUiConnected(false);
+  }
+}
+
+function desconectarMicrosoft(){
+  if(msalApp){
+    const acc = msalApp.getActiveAccount();
+    if(acc) msalApp.setActiveAccount(null);
+  }
+  graphSiteId = null; graphListIds = {}; spConnected = false;
+  setSpUiConnected(false);
+  document.getElementById('sp-msg').textContent = 'Desconectado. El generador sigue en modo local.';
+}
+
+function setSpUiConnected(connected, username){
+  document.getElementById('sp-status-inline').textContent = connected ? '(conectado — '+username+')' : '(desconectado)';
+  document.getElementById('btn-sp-conectar').style.display = connected ? 'none' : '';
+  document.getElementById('btn-sp-desconectar').style.display = connected ? '' : 'none';
+  document.getElementById('status-text').textContent = connected
+    ? 'SharePoint: conectado · Registro compartido activo'
+    : 'Registro compartido: conectado';
+}
+
+async function sincronizarMayoristasYClientes(){
+  const cfg = readSpConfigFromForm();
+  const check = await ensureSiteAndLists(cfg);
+  const ids = check.ids;
+  let mayoristasCount = 0, clientesCount = 0;
+  if(ids.mayoristas){
+    const rawItems = await graphGetAllItems(graphSiteId, ids.mayoristas);
+    const fromSp = rawItems.map(it=>{
+      const f = it.fields||{};
+      return {nombre:f.Title||'', distrito:f.Distrito||'', direccion:f.Direccion||'', ruc:f.RUC||'',
+        contacto:f.ContactoComercial||'', correo:f.ContactoEmail||'', telefono:f.ContactoTelefono||''};
+    }).filter(m=>m.nombre);
+    if(fromSp.length) MAYORISTAS = fromSp;
+    mayoristasCount = fromSp.length;
+    fillSelect(document.getElementById('f-mayorista'), MAYORISTAS, m=>m.nombre, true);
+    document.getElementById('f-mayorista').dispatchEvent(new Event('change'));
+  }
+  if(ids.clientes){
+    const rawItems = await graphGetAllItems(graphSiteId, ids.clientes);
+    CLIENTES = rawItems.map(it=>{
+      const f = it.fields||{};
+      return {razon:f.Title||'', ruc:f.RUC||'', contacto:f.Contacto||'', correo:f.Correo||'',
+        cel:f.Telefono||'', direccion:f.Direccion||'', distrito:f.Distrito||''};
+    }).filter(c=>c.razon);
+    clientesCount = CLIENTES.length;
+    const dl = document.getElementById('clientes-datalist');
+    if(dl) dl.innerHTML = CLIENTES.map(c=>'<option value="'+escAttr(c.razon)+'">').join('');
+  }
+  return {mayoristasCount, clientesCount};
+}
+
+function buscarClientePorRazon(nombre){
+  return CLIENTES.find(c=> c.razon.toLowerCase()===nombre.trim().toLowerCase());
+}
+
+async function registrarHistorialEnSharePoint(record){
+  if(!spConnected) return;
+  const msg = document.getElementById('sp-msg');
+  try{
+    const cfg = readSpConfigFromForm();
+    const check = await ensureSiteAndLists(cfg);
+    const ids = check.ids;
+    if(!ids.historial || !ids.detalle){ msg.textContent = 'No encontré las listas de historial en SharePoint. Revisa los nombres en la configuración.'; return; }
+    await graphFetch('https://graph.microsoft.com/v1.0/sites/'+graphSiteId+'/lists/'+ids.historial+'/items', {
+      method:'POST',
+      body: JSON.stringify({ fields: {
+        Title: record.numero, Fecha: record.fecha, Consultor: record.consultor,
+        Mayorista: record.mayorista, MayoristaRUC: record.mayoristaDatos.ruc,
+        MayoristaContacto: record.mayoristaDatos.contacto, MayoristaCorreo: record.mayoristaDatos.correo,
+        MayoristaTelefono: record.mayoristaDatos.telefono, MayoristaDireccion: record.mayoristaDatos.direccion,
+        MayoristaDistrito: record.mayoristaDatos.distrito, ClienteFinal: record.cliente,
+        ClienteRUC: record.clienteDatos.ruc, ClienteContacto: record.clienteDatos.contacto,
+        ClienteCorreo: record.clienteDatos.correo, ClienteCel: record.clienteDatos.cel,
+        FormaPago: record.clienteDatos.formaPago, Moneda: record.moneda, IGVPct: record.igvPct,
+        Subtotal: record.subtotal, IGV: record.igv, Total: record.total,
+      }}),
+    });
+    for(const it of record.items){
+      await graphFetch('https://graph.microsoft.com/v1.0/sites/'+graphSiteId+'/lists/'+ids.detalle+'/items', {
+        method:'POST',
+        body: JSON.stringify({ fields: {
+          Title: record.numero, Descripcion: it.desc, PN: it.pn,
+          PrecioUnitario: parseFloat(it.precio)||0, Cantidad: parseFloat(it.cant)||0,
+          Precio: (parseFloat(it.precio)||0)*(parseFloat(it.cant)||0),
+        }}),
+      });
+    }
+    msg.textContent = 'Orden '+record.numero+' también registrada en SharePoint (Historial + Detalle).';
+  }catch(e){
+    msg.textContent = 'Se guardó en el registro compartido, pero falló el registro en SharePoint: '+e.message;
+  }
+}
+
+async function loadAll(){
+  registro = await loadShared(K_REGISTRO, []);
+  CONSULTORES = await loadShared(K_CONSULTORES, DEFAULT_CONSULTORES);
+  MAYORISTAS = await loadShared(K_MAYORISTAS, DEFAULT_MAYORISTAS);
+  fillSelect(document.getElementById('f-consultor'), CONSULTORES, c=>c.nombre, true);
+  fillSelect(document.getElementById('f-mayorista'), MAYORISTAS, m=>m.nombre, true);
+  renderRegistro();
+  renderPreview();
+}
+
+async function guardarOrden(){
+  if(items.length===0 || !items.some(i=>i.desc)){
+    document.getElementById('estado-guardado').textContent = 'Agrega al menos un ítem antes de generar la orden.';
+    return;
+  }
+  if(!currentDraftNumero) currentDraftNumero = nextNumero();
+  const cur = currentConsultor();
+  const t = computeTotals();
+  const mayoristaSel = document.getElementById('f-mayorista');
+  const record = {
+    numero: currentDraftNumero,
+    fecha: document.getElementById('f-fecha').value || new Date().toISOString().slice(0,10),
+    consultor: cur.nombre,
+    mayorista: mayoristaSel.selectedOptions[0].text.replace('+ ',''),
+    mayoristaDatos: {
+      contacto: document.getElementById('f-m-contacto').value,
+      correo: document.getElementById('f-m-correo').value,
+      telefono: document.getElementById('f-m-telefono').value,
+      ruc: document.getElementById('f-m-ruc').value,
+      direccion: document.getElementById('f-m-direccion').value,
+      distrito: document.getElementById('f-m-distrito').value,
+    },
+    cliente: document.getElementById('f-c-razon').value,
+    clienteDatos: {
+      ruc: document.getElementById('f-c-ruc').value,
+      contacto: document.getElementById('f-c-contacto').value,
+      correo: document.getElementById('f-c-correo').value,
+      cel: document.getElementById('f-c-cel').value,
+      formaPago: document.getElementById('f-formapago').value,
+    },
+    items: JSON.parse(JSON.stringify(items)),
+    moneda: document.getElementById('f-moneda').value,
+    igvPct: t.igvPct,
+    subtotal: t.subtotal, igv: t.igv, total: t.total,
+  };
+  const idx = registro.findIndex(r=>r.numero===record.numero);
+  if(idx>=0) registro[idx] = record; else registro.unshift(record);
+  const ok = await saveShared(K_REGISTRO, registro);
+  renderRegistro();
+  renderPreview();
+  document.getElementById('estado-guardado').textContent = ok
+    ? 'Orden '+record.numero+' guardada en el registro.'
+    : 'No se pudo guardar en el registro compartido. Intenta de nuevo.';
+  registrarHistorialEnSharePoint(record);
+}
+
+function collectDraft(){
+  return {
+    numero: currentDraftNumero,
+    fecha: document.getElementById('f-fecha').value,
+    consultorIdx: document.getElementById('f-consultor').value,
+    mayoristaIdx: document.getElementById('f-mayorista').value,
+    m: {
+      contacto: document.getElementById('f-m-contacto').value,
+      correo: document.getElementById('f-m-correo').value,
+      telefono: document.getElementById('f-m-telefono').value,
+      ruc: document.getElementById('f-m-ruc').value,
+      direccion: document.getElementById('f-m-direccion').value,
+      distrito: document.getElementById('f-m-distrito').value,
+    },
+    c: {
+      razon: document.getElementById('f-c-razon').value,
+      ruc: document.getElementById('f-c-ruc').value,
+      contacto: document.getElementById('f-c-contacto').value,
+      correo: document.getElementById('f-c-correo').value,
+      cel: document.getElementById('f-c-cel').value,
+      formaPago: document.getElementById('f-formapago').value,
+    },
+    moneda: document.getElementById('f-moneda').value,
+    igvPct: document.getElementById('f-igv').value,
+    items: JSON.parse(JSON.stringify(items)),
+    guardadoEn: new Date().toISOString(),
+  };
+}
+
+async function guardarBorrador(){
+  const draft = collectDraft();
+  try{
+    await window.storage.set(K_BORRADOR, JSON.stringify(draft), false);
+    document.getElementById('estado-guardado').textContent = 'Borrador guardado en este navegador.';
+  }catch(e){
+    document.getElementById('estado-guardado').textContent = 'No se pudo guardar el borrador.';
+  }
+}
+
+function applyDraft(d){
+  currentDraftNumero = d.numero || null;
+  document.getElementById('f-fecha').value = d.fecha || new Date().toISOString().slice(0,10);
+  document.getElementById('f-consultor').value = d.consultorIdx || 0;
+  document.getElementById('f-mayorista').value = d.mayoristaIdx || 0;
+  document.getElementById('f-mayorista').dispatchEvent(new Event('change'));
+  document.getElementById('f-m-contacto').value = d.m.contacto;
+  document.getElementById('f-m-correo').value = d.m.correo;
+  document.getElementById('f-m-telefono').value = d.m.telefono;
+  document.getElementById('f-m-ruc').value = d.m.ruc;
+  document.getElementById('f-m-direccion').value = d.m.direccion;
+  document.getElementById('f-m-distrito').value = d.m.distrito;
+  document.getElementById('f-c-razon').value = d.c.razon;
+  document.getElementById('f-c-ruc').value = d.c.ruc;
+  document.getElementById('f-c-contacto').value = d.c.contacto;
+  document.getElementById('f-c-correo').value = d.c.correo;
+  document.getElementById('f-c-cel').value = d.c.cel;
+  document.getElementById('f-formapago').value = d.c.formaPago;
+  document.getElementById('f-moneda').value = d.moneda;
+  document.getElementById('f-igv').value = d.igvPct;
+  items = d.items && d.items.length ? JSON.parse(JSON.stringify(d.items)) : [];
+  if(items.length===0) addItemRow(); else renderItemsForm();
+  renderPreview();
+}
+
+/* ---------- registro ---------- */
+function renderRegistro(filter){
+  const wrap = document.getElementById('reg-table-wrap');
+  const q = (filter||'').toLowerCase();
+  const rows = registro.filter(r=>{
+    if(!q) return true;
+    return (r.numero+' '+r.mayorista+' '+r.cliente+' '+r.consultor).toLowerCase().includes(q);
+  });
+  document.getElementById('reg-count').textContent = registro.length + ' orden(es) en total';
+  if(rows.length===0){
+    wrap.innerHTML = '<div class="lcg-reg-empty">Todavía no hay órdenes generadas. Crea la primera desde la pestaña "Nueva orden de compra".</div>';
+    return;
+  }
+  wrap.innerHTML = '<table class="lcg-reg"><thead><tr>'+
+    '<th>Número</th><th>Fecha</th><th>Consultor</th><th>Mayorista</th><th>Cliente final</th><th>Total</th><th></th>'+
+    '</tr></thead><tbody>'+
+    rows.map(r=>'<tr>'+
+      '<td><span class="lcg-badge">'+escHtml(r.numero)+'</span></td>'+
+      '<td>'+escHtml(r.fecha)+'</td>'+
+      '<td>'+escHtml(r.consultor)+'</td>'+
+      '<td>'+escHtml(r.mayorista)+'</td>'+
+      '<td>'+escHtml(r.cliente)+'</td>'+
+      '<td>'+escHtml(r.moneda)+' '+money(r.total)+'</td>'+
+      '<td><button class="lcg-link" data-open="'+escHtml(r.numero)+'">Ver / reimprimir</button></td>'+
+      '</tr>').join('') +
+    '</tbody></table>';
+  wrap.querySelectorAll('[data-open]').forEach(btn=>{
+    btn.addEventListener('click', ()=> openOrder(btn.getAttribute('data-open')) );
+  });
+}
+
+function openOrder(numero){
+  const r = registro.find(x=>x.numero===numero);
+  if(!r) return;
+  currentDraftNumero = r.numero;
+  const ci = CONSULTORES.findIndex(c=>c.nombre===r.consultor);
+  document.getElementById('f-consultor').value = ci>=0?ci:0;
+  const mi = MAYORISTAS.findIndex(m=>m.nombre===r.mayorista);
+  document.getElementById('f-mayorista').value = mi>=0?mi:'otro';
+  document.getElementById('f-m-contacto').value = r.mayoristaDatos.contacto;
+  document.getElementById('f-m-correo').value = r.mayoristaDatos.correo;
+  document.getElementById('f-m-telefono').value = r.mayoristaDatos.telefono;
+  document.getElementById('f-m-ruc').value = r.mayoristaDatos.ruc;
+  document.getElementById('f-m-direccion').value = r.mayoristaDatos.direccion;
+  document.getElementById('f-m-distrito').value = r.mayoristaDatos.distrito;
+  document.getElementById('f-c-razon').value = r.cliente;
+  document.getElementById('f-c-ruc').value = r.clienteDatos.ruc;
+  document.getElementById('f-c-contacto').value = r.clienteDatos.contacto;
+  document.getElementById('f-c-correo').value = r.clienteDatos.correo;
+  document.getElementById('f-c-cel').value = r.clienteDatos.cel;
+  document.getElementById('f-formapago').value = r.clienteDatos.formaPago;
+  document.getElementById('f-moneda').value = r.moneda;
+  document.getElementById('f-igv').value = r.igvPct;
+  document.getElementById('f-fecha').value = r.fecha;
+  items = JSON.parse(JSON.stringify(r.items));
+  renderItemsForm();
+  document.getElementById('estado-guardado').textContent = 'Mostrando la orden '+r.numero+' (guardada el '+r.fecha+').';
+  switchTab('nueva');
+  renderPreview();
+  closeModal('modal-abrir');
+}
+
+function switchTab(name){
+  document.querySelectorAll('.lcg-tab').forEach(t=>t.classList.toggle('active', t.getAttribute('data-tab')===name));
+  document.getElementById('view-nueva').classList.toggle('active', name==='nueva');
+  document.getElementById('view-registro').classList.toggle('active', name==='registro');
+}
+
+/* ---------- modales genéricos ---------- */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+/* ---------- gestionar consultores ---------- */
+function renderConsultorRows(list){
+  const wrap = document.getElementById('consultores-rows');
+  wrap.innerHTML = list.map((c,i)=>
+    '<div class="lcg-manage-row">'+
+      '<input data-i="'+i+'" data-f="nombre" value="'+escAttr(c.nombre)+'" placeholder="Nombre">'+
+      '<input data-i="'+i+'" data-f="celular" value="'+escAttr(c.celular)+'" placeholder="Celular">'+
+      '<input data-i="'+i+'" data-f="correo" value="'+escAttr(c.correo)+'" placeholder="Correo">'+
+      '<button type="button" class="lcg-del" data-rm="'+i+'">&times;</button>'+
+    '</div>').join('');
+}
+function readConsultorRows(){
+  const rows = [...document.querySelectorAll('#consultores-rows .lcg-manage-row')];
+  return rows.map(row=>{
+    const obj = {};
+    row.querySelectorAll('input').forEach(inp=> obj[inp.getAttribute('data-f')] = inp.value );
+    return obj;
+  }).filter(c=>c.nombre);
+}
+
+/* ---------- gestionar mayoristas ---------- */
+function renderMayoristaRows(list){
+  const wrap = document.getElementById('mayoristas-rows');
+  wrap.innerHTML = list.map((m,i)=>
+    '<div style="border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px">'+
+    '<div class="lcg-row2" style="margin-bottom:6px">'+
+      '<input data-i="'+i+'" data-f="nombre" value="'+escAttr(m.nombre)+'" placeholder="Empresa">'+
+      '<input data-i="'+i+'" data-f="ruc" value="'+escAttr(m.ruc)+'" placeholder="RUC">'+
+    '</div>'+
+    '<div class="lcg-row2" style="margin-bottom:6px">'+
+      '<input data-i="'+i+'" data-f="contacto" value="'+escAttr(m.contacto)+'" placeholder="Contacto">'+
+      '<input data-i="'+i+'" data-f="correo" value="'+escAttr(m.correo)+'" placeholder="Correo">'+
+    '</div>'+
+    '<div class="lcg-row2" style="margin-bottom:6px">'+
+      '<input data-i="'+i+'" data-f="telefono" value="'+escAttr(m.telefono)+'" placeholder="Teléfono">'+
+      '<input data-i="'+i+'" data-f="distrito" value="'+escAttr(m.distrito)+'" placeholder="Distrito">'+
+    '</div>'+
+    '<div style="display:flex;gap:6px">'+
+      '<input data-i="'+i+'" data-f="direccion" value="'+escAttr(m.direccion)+'" placeholder="Dirección" style="flex:1">'+
+      '<button type="button" class="lcg-del" data-rm="'+i+'">&times;</button>'+
+    '</div></div>').join('');
+}
+function readMayoristaRows(){
+  const wrap = document.getElementById('mayoristas-rows');
+  const groups = [...wrap.children];
+  return groups.map(g=>{
+    const obj = {};
+    g.querySelectorAll('input').forEach(inp=> obj[inp.getAttribute('data-f')] = inp.value );
+    return obj;
+  }).filter(m=>m.nombre);
+}
+
+/* ---------- abrir ---------- */
+async function abrirModalAbrir(){
+  const draftRes = await (async()=>{ try{ const r = await window.storage.get(K_BORRADOR, false); return r && r.value ? JSON.parse(r.value) : null; }catch(e){ return null; } })();
+  const draftWrap = document.getElementById('abrir-draft-row');
+  if(draftRes){
+    draftWrap.innerHTML = '<button class="lcg-btn lcg-btn-primary" id="btn-abrir-borrador" type="button">⭳ Continuar borrador local ('+
+      (draftRes.c.razon||'sin cliente')+' — guardado '+new Date(draftRes.guardadoEn).toLocaleString('es-PE')+')</button>';
+    document.getElementById('btn-abrir-borrador').addEventListener('click', ()=>{
+      applyDraft(draftRes);
+      closeModal('modal-abrir');
+      switchTab('nueva');
+    });
+  } else {
+    draftWrap.innerHTML = '<div class="lcg-hint">No hay borrador local guardado en este navegador.</div>';
+  }
+  const regWrap = document.getElementById('abrir-registro-rows');
+  if(registro.length===0){
+    regWrap.innerHTML = '<div class="lcg-hint">Aún no hay órdenes en el registro.</div>';
+  } else {
+    regWrap.innerHTML = registro.slice(0,25).map(r=>
+      '<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)">'+
+      '<span><span class="lcg-badge">'+escHtml(r.numero)+'</span> '+escHtml(r.mayorista)+' → '+escHtml(r.cliente)+'</span>'+
+      '<button class="lcg-link" data-open="'+escHtml(r.numero)+'">Abrir</button></div>').join('');
+    regWrap.querySelectorAll('[data-open]').forEach(btn=>{
+      btn.addEventListener('click', ()=> openOrder(btn.getAttribute('data-open')) );
+    });
+  }
+  openModal('modal-abrir');
+}
+
+/* ---------- enviar ---------- */
+function abrirModalVistaPrevia(){
+  document.getElementById('vp-doc-wrap').innerHTML = document.getElementById('lcg-doc').innerHTML;
+  openModal('modal-vistaprevia');
+}
+
+function abrirModalEnviar(){
+  document.getElementById('enviar-correo').value = document.getElementById('f-m-correo').value || '';
+  document.getElementById('enviar-whatsapp').value = '';
+  updateEnviarLinks();
+  openModal('modal-enviar');
+}
+function updateEnviarLinks(){
+  const numero = draftNumeroPreview();
+  const mayorista = document.getElementById('f-mayorista').selectedOptions[0].text.replace('+ ','');
+  const asunto = 'Orden de Compra '+numero+' - LACRUZ GROUP';
+  const cuerpo = 'Estimados '+mayorista+',%0D%0A%0D%0AAdjunto la Orden de Compra '+numero+' de LACRUZ TECHNOLOGIES GROUP SACS.%0D%0A%0D%0ASaludos,%0D%0A'+escHtml(currentConsultor().nombre);
+  const correo = document.getElementById('enviar-correo').value;
+  document.getElementById('link-correo').href = 'mailto:'+encodeURIComponent(correo)+'?subject='+encodeURIComponent(asunto)+'&body='+cuerpo;
+  const wa = document.getElementById('enviar-whatsapp').value.replace(/[^0-9+]/g,'');
+  document.getElementById('link-whatsapp').href = 'https://wa.me/'+wa.replace('+','')+'?text='+encodeURIComponent('Hola, adjunto la Orden de Compra '+numero+' de LACRUZ GROUP.');
+}
+
+/* ---------- wire up modals ---------- */
+function wireModals(){
+  document.getElementById('btn-gestionar-consultores').addEventListener('click', ()=>{
+    renderConsultorRows(CONSULTORES);
+    openModal('modal-consultores');
+  });
+  document.getElementById('btn-add-consultor').addEventListener('click', ()=>{
+    const list = readConsultorRows(); list.push({nombre:'',celular:'',correo:''}); renderConsultorRows(list);
+  });
+  document.getElementById('modal-consultores').addEventListener('click', e=>{
+    if(e.target.matches('[data-rm]')){ const list = readConsultorRows(); list.splice(+e.target.getAttribute('data-rm'),1); renderConsultorRows(list); }
+  });
+  document.getElementById('btn-cancel-consultores').addEventListener('click', ()=> closeModal('modal-consultores'));
+  document.getElementById('btn-save-consultores').addEventListener('click', async ()=>{
+    CONSULTORES = readConsultorRows();
+    if(CONSULTORES.length===0) CONSULTORES = DEFAULT_CONSULTORES.slice();
+    await saveShared(K_CONSULTORES, CONSULTORES);
+    fillSelect(document.getElementById('f-consultor'), CONSULTORES, c=>c.nombre, true);
+    renderPreview();
+    closeModal('modal-consultores');
+  });
+
+  document.getElementById('btn-gestionar-mayoristas').addEventListener('click', ()=>{
+    renderMayoristaRows(MAYORISTAS);
+    openModal('modal-mayoristas');
+  });
+  document.getElementById('btn-add-mayorista').addEventListener('click', ()=>{
+    const list = readMayoristaRows(); list.push({nombre:'',ruc:'',contacto:'',correo:'',telefono:'',distrito:'',direccion:''}); renderMayoristaRows(list);
+  });
+  document.getElementById('modal-mayoristas').addEventListener('click', e=>{
+    if(e.target.matches('[data-rm]')){ const list = readMayoristaRows(); list.splice(+e.target.getAttribute('data-rm'),1); renderMayoristaRows(list); }
+  });
+  document.getElementById('btn-cancel-mayoristas').addEventListener('click', ()=> closeModal('modal-mayoristas'));
+  document.getElementById('btn-save-mayoristas').addEventListener('click', async ()=>{
+    MAYORISTAS = readMayoristaRows();
+    if(MAYORISTAS.length===0) MAYORISTAS = DEFAULT_MAYORISTAS.slice();
+    await saveShared(K_MAYORISTAS, MAYORISTAS);
+    fillSelect(document.getElementById('f-mayorista'), MAYORISTAS, m=>m.nombre, true);
+    document.getElementById('f-mayorista').dispatchEvent(new Event('change'));
+    closeModal('modal-mayoristas');
+  });
+
+  document.getElementById('btn-cerrar-abrir').addEventListener('click', ()=> closeModal('modal-abrir'));
+  document.getElementById('btn-cerrar-enviar').addEventListener('click', ()=> closeModal('modal-enviar'));
+  document.getElementById('btn-cerrar-vistaprevia').addEventListener('click', ()=> closeModal('modal-vistaprevia'));
+  document.getElementById('btn-vp-imprimir').addEventListener('click', ()=>{ closeModal('modal-vistaprevia'); window.print(); });
+  ['enviar-correo','enviar-whatsapp'].forEach(id=> document.getElementById(id).addEventListener('input', updateEnviarLinks));
+
+  document.getElementById('btn-sp-guardar').addEventListener('click', async ()=>{
+    const cfg = readSpConfigFromForm();
+    await window.storage.set(K_SPCONFIG, JSON.stringify(cfg), false);
+    document.getElementById('sp-msg').textContent = 'Configuración guardada en este navegador.';
+  });
+  document.getElementById('btn-sp-conectar').addEventListener('click', conectarMicrosoft);
+  document.getElementById('btn-sp-desconectar').addEventListener('click', desconectarMicrosoft);
+}
+
+document.querySelectorAll('.lcg-tab').forEach(t=>{
+  t.addEventListener('click', ()=> switchTab(t.getAttribute('data-tab')) );
+});
+document.getElementById('reg-search').addEventListener('input', e=> renderRegistro(e.target.value) );
+
+initForm();
+wireModals();
+loadAll();
+loadSpConfig().then(cfg=>{ if(cfg) fillSpConfigForm(cfg); });
+
+})();
+</script>
