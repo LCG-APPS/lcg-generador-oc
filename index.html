@@ -412,6 +412,38 @@ table.lcg-reg tr:hover td{background:#F7FAFC;}
 <script>
 (function(){
 
+/* ---------- Compatibilidad: window.storage no existe fuera de un artifact de Claude.
+   Este archivo corre como sitio independiente (GitHub Pages), así que lo reemplazamos
+   por una versión basada en localStorage con la misma forma (get/set/delete/list).
+   Nota: a diferencia del artifact original, esto NO se comparte entre computadoras —
+   cada persona tiene su propio localStorage. Lo compartido de verdad entre Jaime y Gaby
+   es SharePoint (Mayoristas, Clientes, Historial y Detalle de OC) una vez conectados. */
+if(typeof window.storage === 'undefined'){
+  window.storage = {
+    async get(key, shared){
+      const raw = localStorage.getItem(key);
+      if(raw==null) throw new Error('key not found: '+key);
+      return {key, value: raw, shared: !!shared};
+    },
+    async set(key, value, shared){
+      localStorage.setItem(key, value);
+      return {key, value, shared: !!shared};
+    },
+    async delete(key, shared){
+      localStorage.removeItem(key);
+      return {key, deleted:true, shared: !!shared};
+    },
+    async list(prefix, shared){
+      const keys = [];
+      for(let i=0;i<localStorage.length;i++){
+        const k = localStorage.key(i);
+        if(!prefix || (k&&k.indexOf(prefix)===0)) keys.push(k);
+      }
+      return {keys, prefix, shared: !!shared};
+    },
+  };
+}
+
 const DEFAULT_CONSULTORES = [
   {nombre:'Jaime La Cruz', celular:'962 281 473', correo:'jaime.lacruz@lacruzgroup.com'},
   {nombre:'Vicente Fukuda', celular:'977 540 932', correo:'vicente.fukuda@lacruzgroup.com'},
@@ -799,9 +831,10 @@ async function conectarMicrosoft(){
       return;
     }
     const resumen = await sincronizarMayoristasYClientes();
+    const numOrdenes = await cargarHistorialDesdeSharePoint();
     spConnected = true;
     setSpUiConnected(true, resp.account.username);
-    msg.textContent = 'Conectado como '+resp.account.username+'. Cargados '+resumen.mayoristasCount+' mayoristas y '+resumen.clientesCount+' clientes desde SharePoint.';
+    msg.textContent = 'Conectado como '+resp.account.username+'. Cargados '+resumen.mayoristasCount+' mayoristas, '+resumen.clientesCount+' clientes y '+numOrdenes+' órdenes del historial.';
   }catch(e){
     msg.textContent = 'No se pudo conectar: '+e.message;
     spConnected = false;
@@ -826,6 +859,45 @@ function setSpUiConnected(connected, username){
   document.getElementById('status-text').textContent = connected
     ? 'SharePoint: conectado · Registro compartido activo'
     : 'Registro compartido: conectado';
+}
+
+async function cargarHistorialDesdeSharePoint(){
+  const cfg = readSpConfigFromForm();
+  const check = await ensureSiteAndLists(cfg);
+  const ids = check.ids;
+  if(!ids.historial || !ids.detalle) return 0;
+  const [histItems, detItems] = await Promise.all([
+    graphGetAllItems(graphSiteId, ids.historial),
+    graphGetAllItems(graphSiteId, ids.detalle),
+  ]);
+  const detByNumero = {};
+  detItems.forEach(it=>{
+    const f = it.fields||{};
+    const num = f.Title||'';
+    if(!detByNumero[num]) detByNumero[num] = [];
+    detByNumero[num].push({desc:f.Descripcion||'', pn:f.PN||'',
+      precio: f.PrecioUnitario!=null?String(f.PrecioUnitario):'', cant: f.Cantidad!=null?String(f.Cantidad):''});
+  });
+  const fromSp = histItems.map(it=>{
+    const f = it.fields||{};
+    const numero = f.Title||'';
+    return {
+      numero, fecha: f.Fecha ? String(f.Fecha).slice(0,10) : '', consultor: f.Consultor||'',
+      mayorista: f.Mayorista||'',
+      mayoristaDatos: { contacto:f.MayoristaContacto||'', correo:f.MayoristaCorreo||'', telefono:f.MayoristaTelefono||'',
+        ruc:f.MayoristaRUC||'', direccion:f.MayoristaDireccion||'', distrito:f.MayoristaDistrito||'' },
+      cliente: f.ClienteFinal||'',
+      clienteDatos: { ruc:f.ClienteRUC||'', contacto:f.ClienteContacto||'', correo:f.ClienteCorreo||'',
+        cel:f.ClienteCel||'', formaPago:f.FormaPago||'' },
+      items: detByNumero[numero] || [],
+      moneda: f.Moneda||'$', igvPct: f.IGVPct!=null?f.IGVPct:18,
+      subtotal: f.Subtotal||0, igv: f.IGV||0, total: f.Total||0,
+    };
+  }).filter(r=>r.numero);
+  fromSp.sort((a,b)=> (b.numero||'').localeCompare(a.numero||''));
+  registro = fromSp;
+  renderRegistro();
+  return fromSp.length;
 }
 
 async function sincronizarMayoristasYClientes(){
