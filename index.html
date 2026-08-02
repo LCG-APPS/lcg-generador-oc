@@ -734,7 +734,7 @@ function fillSpConfigForm(cfg){
 
 const GRAPH_SCOPES = ['Sites.ReadWrite.All'];
 
-function getMsalApp(cfg){
+async function getMsalApp(cfg){
   if(!window.msal){ throw new Error('La librería MSAL no cargó (revisa conexión a internet / CDN).'); }
   if(!msalApp){
     msalApp = new msal.PublicClientApplication({
@@ -745,13 +745,14 @@ function getMsalApp(cfg){
       },
       cache: { cacheLocation: 'localStorage' },
     });
+    await msalApp.initialize();
   }
   return msalApp;
 }
 
 async function graphToken(){
   const cfg = await loadSpConfig();
-  const app = getMsalApp(cfg);
+  const app = await getMsalApp(cfg);
   let account = app.getActiveAccount();
   if(!account){
     const accs = app.getAllAccounts();
@@ -816,7 +817,7 @@ async function conectarMicrosoft(){
     const cfg = readSpConfigFromForm();
     if(!cfg.clientId || !cfg.tenant){ msg.textContent = 'Completa Client ID y Tenant antes de conectar.'; return; }
     await window.storage.set(K_SPCONFIG, JSON.stringify(cfg), false);
-    const app = getMsalApp(cfg);
+    const app = await getMsalApp(cfg);
     const resp = await app.loginPopup({ scopes: GRAPH_SCOPES });
     app.setActiveAccount(resp.account);
     msg.textContent = 'Conectado como '+resp.account.username+'. Buscando las listas en el sitio...';
