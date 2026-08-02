@@ -89,45 +89,63 @@
 .lcg-resumen-row.total{border-top:1px solid rgba(255,255,255,.2);margin-top:6px;padding-top:10px;
   font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;color:#fff;}
 
-/* Preview / documento */
+/* Preview / documento (mismo estilo que el cotizador: banner navy + tarjetas) */
 .lcg-preview-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:0;
   position:sticky;top:0;overflow:hidden;}
 .lcg-topbar{height:5px;background:var(--cyan);}
-#lcg-doc{padding:26px 26px 0;font-family:'Lato',sans-serif;font-size:12px;color:var(--text);}
-.lcg-doc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+#lcg-doc{font-family:'Lato',sans-serif;font-size:12px;color:var(--text);}
+
+.lcg-doc-banner{background:var(--navy);color:#fff;padding:20px 26px;display:flex;
+  justify-content:space-between;align-items:flex-start;}
+.lcg-doc-banner .lcg-doclogo .word1{color:#fff;}
+.lcg-doc-banner .lcg-doclogo .word2{color:#fff;}
+.lcg-doc-banner .lcg-doclogo .lcg-dotgrid span{background:var(--cyan);}
 .lcg-doclogo{display:flex;flex-direction:column;gap:3px;}
-.lcg-doclogo .word1{font-family:'Poppins',sans-serif;font-weight:700;font-size:23px;color:var(--navy);
+.lcg-doclogo .word1{font-family:'Poppins',sans-serif;font-weight:700;font-size:22px;color:var(--navy);
   letter-spacing:.01em;line-height:1;}
 .lcg-doclogo .word2row{display:flex;align-items:center;gap:7px;}
 .lcg-doclogo .lcg-dotgrid{grid-template-columns:repeat(3,5px);grid-template-rows:repeat(2,5px);gap:2.5px;}
-.lcg-doclogo .lcg-dotgrid span{width:5px;height:5px;}
-.lcg-doclogo .word2{font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;color:var(--navy);letter-spacing:.01em;}
-.lcg-doc-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;color:var(--navy);text-align:right;
-  white-space:nowrap;padding-top:4px;}
-.lcg-razon{font-family:'Poppins',sans-serif;font-weight:700;font-size:11.5px;margin:10px 0 6px;
-  padding-bottom:6px;border-bottom:2px solid var(--cyan);color:var(--navy);}
-.lcg-infoblock{width:100%;border-collapse:collapse;margin-bottom:8px;}
-.lcg-infoblock td{border:1px solid var(--border);padding:4px 6px;font-size:11px;}
-.lcg-infoblock td.k{font-family:'Poppins',sans-serif;font-weight:600;width:14%;background:var(--bg);color:var(--navy);}
-.lcg-infoblock td.v{width:36%;}
-.lcg-itemstbl{width:100%;border-collapse:collapse;margin:10px 0;}
+.lcg-doclogo .lcg-dotgrid span{width:5px;height:5px;background:var(--cyan);border-radius:50%;}
+.lcg-doclogo .word2{font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;color:var(--navy);letter-spacing:.01em;}
+.lcg-doc-tagline{font-size:8px;letter-spacing:.14em;color:#BFD4E8;margin-top:5px;text-transform:uppercase;}
+.lcg-doc-titleblock{text-align:right;}
+.lcg-doc-titleblock .lbl{font-size:9px;letter-spacing:.12em;color:#BFD4E8;text-transform:uppercase;}
+.lcg-doc-titleblock .num{font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;line-height:1.3;}
+.lcg-doc-titleblock .fecha{font-size:9px;color:#BFD4E8;margin-top:3px;}
+.lcg-doc-refband{background:var(--cyan);color:var(--navy);font-family:'Poppins',sans-serif;font-weight:600;
+  font-size:10.5px;letter-spacing:.02em;padding:8px 26px;text-transform:uppercase;}
+
+.lcg-doc-content{padding:20px 26px 26px;}
+.lcg-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.lcg-card{background:var(--bg);border-radius:8px;padding:13px 15px;}
+.lcg-card h4{font-family:'Poppins',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--navy);margin:0 0 8px;font-weight:700;}
+.lcg-card .r{display:flex;font-size:10.5px;margin-bottom:5px;line-height:1.4;}
+.lcg-card .r .k{width:66px;flex:none;color:var(--text-muted);font-weight:700;}
+.lcg-card .r .v{color:var(--text);font-weight:600;}
+.lcg-card .r .v.big{font-family:'Poppins',sans-serif;font-weight:700;color:var(--navy);}
+
+.lcg-itemstbl{width:100%;border-collapse:collapse;margin:0 0 4px;}
 .lcg-itemstbl th{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:500;
-  font-size:10px;text-transform:uppercase;letter-spacing:.02em;padding:7px 6px;text-align:left;}
-.lcg-itemstbl td{border:1px solid var(--border);padding:5px 6px;font-size:10.5px;vertical-align:top;}
+  font-size:9.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 8px;text-align:left;}
+.lcg-itemstbl td{padding:8px 8px;font-size:11px;vertical-align:top;border-bottom:1px solid var(--border);}
 .lcg-itemstbl tr:nth-child(even) td{background:var(--bg);}
 .lcg-itemstbl td.num{text-align:right;white-space:nowrap;}
-.lcg-bottom{display:flex;justify-content:space-between;gap:14px;margin-top:6px;}
-.lcg-cliente{font-size:10.5px;line-height:1.7;}
-.lcg-cliente b{font-family:'Poppins',sans-serif;color:var(--navy);}
-.lcg-totals{min-width:220px;}
-.lcg-totals table{width:100%;border-collapse:collapse;}
-.lcg-totals td{padding:6px 8px;font-size:11px;border:1px solid var(--border);}
-.lcg-totals td.k{font-family:'Poppins',sans-serif;text-align:right;font-weight:600;color:var(--navy);}
-.lcg-totals td.v{text-align:right;width:90px;}
-.lcg-totals tr.total td{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:12.5px;}
-.lcg-firma{margin-top:34px;text-align:right;font-size:10.5px;line-height:1.5;}
-.lcg-firma .linea{border-top:1px solid #333;width:180px;margin-left:auto;margin-bottom:4px;margin-top:26px;}
-.lcg-docfooter{margin-top:22px;padding:10px 0;border-top:1px solid var(--border);
+.lcg-itemstbl .pn{display:block;font-size:9px;color:var(--text-muted);margin-top:2px;}
+
+.lcg-bottom{display:flex;justify-content:space-between;gap:14px;margin-top:14px;align-items:flex-start;}
+.lcg-cliente-card{flex:1;}
+.lcg-totals-simple{min-width:230px;}
+.lcg-totals-simple .trow{display:flex;justify-content:space-between;padding:4px 2px;font-size:11px;color:var(--text-muted);}
+.lcg-totals-simple .trow .v{color:var(--text);font-weight:600;}
+.lcg-totals-simple .trow.total{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;
+  font-size:13px;padding:9px 10px;border-radius:5px;margin-top:6px;}
+.lcg-totals-simple .trow.total .v{color:#fff;}
+
+.lcg-firma{margin-top:30px;text-align:right;font-size:10.5px;line-height:1.5;}
+.lcg-firma b{font-family:'Poppins',sans-serif;color:var(--navy);}
+.lcg-firma .linea{border-top:1px solid #333;width:180px;margin-left:auto;margin-bottom:4px;margin-top:24px;}
+.lcg-docfooter{margin-top:20px;padding:12px 26px;border-top:1px solid var(--border);background:var(--bg);
   display:flex;justify-content:space-between;font-size:9.5px;color:var(--text-muted);}
 .lcg-docfooter b{color:var(--navy);font-family:'Poppins',sans-serif;}
 
@@ -167,8 +185,11 @@ table.lcg-reg tr:hover td{background:#F7FAFC;}
 @media print{
   body *{visibility:hidden;}
   #lcg-doc,#lcg-doc *,.lcg-topbar{visibility:visible;}
-  .lcg-topbar{position:absolute;top:0;left:0;width:100%;height:5px;}
-  #lcg-doc{position:absolute;top:5px;left:0;width:100%;padding:10mm 12mm 0;}
+  .lcg-topbar{display:none;}
+  #lcg-doc{position:absolute;top:0;left:0;width:100%;padding:0;}
+  .lcg-doc-banner,.lcg-doc-refband{padding-left:12mm;padding-right:12mm;}
+  .lcg-doc-content{padding-left:12mm;padding-right:12mm;}
+  .lcg-docfooter{padding-left:12mm;padding-right:12mm;}
   .lcg-preview-wrap{border:none;position:static;}
 }
 </style>
@@ -177,9 +198,12 @@ table.lcg-reg tr:hover td{background:#F7FAFC;}
 
   <div class="lcg-header">
     <div class="lcg-brand">
-      <div class="lcg-logo"><div class="word1">LACRUZ</div><div class="word2row">
-        <div class="lcg-dotgrid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-        <div class="word2">GROUP</div></div></div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.8 162.0" width="100" height="36">
+<title>LACRUZ GROUP</title>
+<g fill="#FFFFFF" transform="translate(0,88) scale(0.11347517730496454,-0.11347517730496454)"><path d="M233 132H457V0H62V702H233Z" transform="translate(0,0)"/><path d="M499 124H237L195 0H16L270 702H468L722 0H541ZM455 256 368 513 282 256Z" transform="translate(477,0)"/><path d="M386 710Q511 710 600.0 644.0Q689 578 719 464H531Q510 508 471.5 531.0Q433 554 384 554Q305 554 256.0 499.0Q207 444 207 352Q207 260 256.0 205.0Q305 150 384 150Q433 150 471.5 173.0Q510 196 531 240H719Q689 126 600.0 60.5Q511 -5 386 -5Q284 -5 203.5 40.5Q123 86 78.0 167.0Q33 248 33 352Q33 456 78.0 537.5Q123 619 203.5 664.5Q284 710 386 710Z" transform="translate(1214,0)"/><path d="M420 0 274 265H233V0H62V702H349Q432 702 490.5 673.0Q549 644 578.0 593.5Q607 543 607 481Q607 411 567.5 356.0Q528 301 451 278L613 0ZM233 386H339Q386 386 409.5 409.0Q433 432 433 474Q433 514 409.5 537.0Q386 560 339 560H233Z" transform="translate(1976,0)"/><path d="M230 702V282Q230 219 261.0 185.0Q292 151 352 151Q412 151 444.0 185.0Q476 219 476 282V702H647V283Q647 189 607.0 124.0Q567 59 499.5 26.0Q432 -7 349 -7Q266 -7 200.5 25.5Q135 58 97.0 123.5Q59 189 59 283V702Z" transform="translate(2628,0)"/><path d="M244 140H546V0H50V130L350 562H50V702H546V572Z" transform="translate(3333,0)"/></g>
+<circle cx="8.0" cy="117.0" r="8.0" fill="#24C0EB"/><circle cx="30.0" cy="117.0" r="8.0" fill="#24C0EB"/><circle cx="52.0" cy="117.0" r="8.0" fill="#24C0EB"/><circle cx="8.0" cy="139.0" r="8.0" fill="#24C0EB"/><circle cx="30.0" cy="139.0" r="8.0" fill="#24C0EB"/><circle cx="52.0" cy="139.0" r="8.0" fill="#24C0EB"/>
+<g fill="#FFFFFF" transform="translate(74,154) scale(0.07375886524822695,-0.07375886524822695)"><path d="M528 480Q509 515 473.5 533.5Q438 552 390 552Q307 552 257.0 497.5Q207 443 207 352Q207 255 259.5 200.5Q312 146 404 146Q467 146 510.5 178.0Q554 210 574 270H357V396H729V237Q710 173 664.5 118.0Q619 63 549.0 29.0Q479 -5 391 -5Q287 -5 205.5 40.5Q124 86 78.5 167.0Q33 248 33 352Q33 456 78.5 537.5Q124 619 205.0 664.5Q286 710 390 710Q516 710 602.5 649.0Q689 588 717 480Z" transform="translate(0,0)"/><path d="M420 0 274 265H233V0H62V702H349Q432 702 490.5 673.0Q549 644 578.0 593.5Q607 543 607 481Q607 411 567.5 356.0Q528 301 451 278L613 0ZM233 386H339Q386 386 409.5 409.0Q433 432 433 474Q433 514 409.5 537.0Q386 560 339 560H233Z" transform="translate(762,0)"/><path d="M33 353Q33 456 81.5 538.0Q130 620 212.5 666.0Q295 712 394 712Q493 712 575.5 666.0Q658 620 705.5 538.0Q753 456 753 353Q753 250 705.0 167.5Q657 85 575.0 39.0Q493 -7 394 -7Q295 -7 212.5 39.0Q130 85 81.5 167.5Q33 250 33 353ZM579 353Q579 446 528.5 501.5Q478 557 394 557Q309 557 258.5 502.0Q208 447 208 353Q208 260 258.5 204.5Q309 149 394 149Q478 149 528.5 205.0Q579 261 579 353Z" transform="translate(1414,0)"/><path d="M230 702V282Q230 219 261.0 185.0Q292 151 352 151Q412 151 444.0 185.0Q476 219 476 282V702H647V283Q647 189 607.0 124.0Q567 59 499.5 26.0Q432 -7 349 -7Q266 -7 200.5 25.5Q135 58 97.0 123.5Q59 189 59 283V702Z" transform="translate(2200,0)"/><path d="M339 252H233V0H62V702H339Q423 702 481.0 673.0Q539 644 568.0 593.0Q597 542 597 476Q597 415 569.0 364.5Q541 314 483.0 283.0Q425 252 339 252ZM423 476Q423 518 399.0 541.0Q375 564 326 564H233V388H326Q375 388 399.0 411.0Q423 434 423 476Z" transform="translate(2905,0)"/></g>
+</svg>
       <div class="lcg-apptitle">GENERADOR DE OC</div>
     </div>
     <div class="lcg-status"><span class="dot"></span><span id="status-text">Registro compartido: conectado</span></div>
@@ -445,9 +469,8 @@ if(typeof window.storage === 'undefined'){
 }
 
 const DEFAULT_CONSULTORES = [
-  {nombre:'Jaime La Cruz', celular:'962 281 473', correo:'jaime.lacruz@lacruzgroup.com'},
-  {nombre:'Vicente Fukuda', celular:'977 540 932', correo:'vicente.fukuda@lacruzgroup.com'},
-  {nombre:'Gaby Chinchano', celular:'933 314 985', correo:'gaby.chinchano@lacruzgroup.com'},
+  {nombre:'Jaime La Cruz', nombreFirma:'Jaime La Cruz Orbe', puesto:'Gerente Comercial', celular:'962 281 473', correo:'jaime.lacruz@lacruzgroup.com'},
+  {nombre:'Gaby Chinchano', nombreFirma:'Gaby Chinchano [PENDIENTE apellido]', puesto:'[PENDIENTE puesto]', celular:'933 314 985', correo:'gaby.chinchano@lacruzgroup.com'},
 ];
 
 const DEFAULT_MAYORISTAS = [
@@ -464,6 +487,8 @@ const DEFAULT_MAYORISTAS = [
 ];
 
 const LACRUZ = {ruc:'20609011549', direccion:'Calle German Schereiber 276. INT 240', correo:'ventas@lacruzgroup.com'};
+const CORRELATIVO_BASE_2026 = 42; // OC ya emitidas manualmente antes de este sistema, en 2026
+const LOGO_SVG_WHITE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.8 162.0" width="130" height="47"><title>LACRUZ GROUP</title><g fill="#FFFFFF" transform="translate(0,88) scale(0.11347517730496454,-0.11347517730496454)"><path d="M233 132H457V0H62V702H233Z" transform="translate(0,0)"/><path d="M499 124H237L195 0H16L270 702H468L722 0H541ZM455 256 368 513 282 256Z" transform="translate(477,0)"/><path d="M386 710Q511 710 600.0 644.0Q689 578 719 464H531Q510 508 471.5 531.0Q433 554 384 554Q305 554 256.0 499.0Q207 444 207 352Q207 260 256.0 205.0Q305 150 384 150Q433 150 471.5 173.0Q510 196 531 240H719Q689 126 600.0 60.5Q511 -5 386 -5Q284 -5 203.5 40.5Q123 86 78.0 167.0Q33 248 33 352Q33 456 78.0 537.5Q123 619 203.5 664.5Q284 710 386 710Z" transform="translate(1214,0)"/><path d="M420 0 274 265H233V0H62V702H349Q432 702 490.5 673.0Q549 644 578.0 593.5Q607 543 607 481Q607 411 567.5 356.0Q528 301 451 278L613 0ZM233 386H339Q386 386 409.5 409.0Q433 432 433 474Q433 514 409.5 537.0Q386 560 339 560H233Z" transform="translate(1976,0)"/><path d="M230 702V282Q230 219 261.0 185.0Q292 151 352 151Q412 151 444.0 185.0Q476 219 476 282V702H647V283Q647 189 607.0 124.0Q567 59 499.5 26.0Q432 -7 349 -7Q266 -7 200.5 25.5Q135 58 97.0 123.5Q59 189 59 283V702Z" transform="translate(2628,0)"/><path d="M244 140H546V0H50V130L350 562H50V702H546V572Z" transform="translate(3333,0)"/></g><circle cx="8.0" cy="117.0" r="8.0" fill="#24C0EB"/><circle cx="30.0" cy="117.0" r="8.0" fill="#24C0EB"/><circle cx="52.0" cy="117.0" r="8.0" fill="#24C0EB"/><circle cx="8.0" cy="139.0" r="8.0" fill="#24C0EB"/><circle cx="30.0" cy="139.0" r="8.0" fill="#24C0EB"/><circle cx="52.0" cy="139.0" r="8.0" fill="#24C0EB"/><g fill="#FFFFFF" transform="translate(74,154) scale(0.07375886524822695,-0.07375886524822695)"><path d="M528 480Q509 515 473.5 533.5Q438 552 390 552Q307 552 257.0 497.5Q207 443 207 352Q207 255 259.5 200.5Q312 146 404 146Q467 146 510.5 178.0Q554 210 574 270H357V396H729V237Q710 173 664.5 118.0Q619 63 549.0 29.0Q479 -5 391 -5Q287 -5 205.5 40.5Q124 86 78.5 167.0Q33 248 33 352Q33 456 78.5 537.5Q124 619 205.0 664.5Q286 710 390 710Q516 710 602.5 649.0Q689 588 717 480Z" transform="translate(0,0)"/><path d="M420 0 274 265H233V0H62V702H349Q432 702 490.5 673.0Q549 644 578.0 593.5Q607 543 607 481Q607 411 567.5 356.0Q528 301 451 278L613 0ZM233 386H339Q386 386 409.5 409.0Q433 432 433 474Q433 514 409.5 537.0Q386 560 339 560H233Z" transform="translate(762,0)"/><path d="M33 353Q33 456 81.5 538.0Q130 620 212.5 666.0Q295 712 394 712Q493 712 575.5 666.0Q658 620 705.5 538.0Q753 456 753 353Q753 250 705.0 167.5Q657 85 575.0 39.0Q493 -7 394 -7Q295 -7 212.5 39.0Q130 85 81.5 167.5Q33 250 33 353ZM579 353Q579 446 528.5 501.5Q478 557 394 557Q309 557 258.5 502.0Q208 447 208 353Q208 260 258.5 204.5Q309 149 394 149Q478 149 528.5 205.0Q579 261 579 353Z" transform="translate(1414,0)"/><path d="M230 702V282Q230 219 261.0 185.0Q292 151 352 151Q412 151 444.0 185.0Q476 219 476 282V702H647V283Q647 189 607.0 124.0Q567 59 499.5 26.0Q432 -7 349 -7Q266 -7 200.5 25.5Q135 58 97.0 123.5Q59 189 59 283V702Z" transform="translate(2200,0)"/><path d="M339 252H233V0H62V702H339Q423 702 481.0 673.0Q539 644 568.0 593.0Q597 542 597 476Q597 415 569.0 364.5Q541 314 483.0 283.0Q425 252 339 252ZM423 476Q423 518 399.0 541.0Q375 564 326 564H233V388H326Q375 388 399.0 411.0Q423 434 423 476Z" transform="translate(2905,0)"/></g></svg>`;
 const K_REGISTRO = 'lcg_oc_registro';
 const K_CONSULTORES = 'lcg_oc_consultores';
 const K_MAYORISTAS = 'lcg_oc_mayoristas';
@@ -615,58 +640,73 @@ function renderPreview(){
   document.getElementById('r-igv').textContent = moneda+' '+money(t.igv);
   document.getElementById('r-total').textContent = moneda+' '+money(t.total);
 
-  const rows = items.map((it,i)=>{
+  const mayoristaSel = document.getElementById('f-mayorista');
+  const mayoristaNombre = mayoristaSel.selectedOptions[0].text.replace('+ ','');
+
+  const rowsHtml = items.map((it,i)=>{
     const precioNum = parseFloat(it.precio)||0;
     const cantNum = parseFloat(it.cant)||0;
     return '<tr>'+
       '<td>'+(i+1)+'</td>'+
-      '<td>'+escHtml(it.desc)+'</td>'+
-      '<td>'+escHtml(it.pn)+'</td>'+
+      '<td>'+escHtml(it.desc)+(it.pn?'<span class="pn">PN: '+escHtml(it.pn)+'</span>':'')+'</td>'+
       '<td class="num">'+moneda+' '+money(precioNum)+'</td>'+
       '<td class="num">'+(cantNum||0)+'</td>'+
       '<td class="num">'+moneda+' '+money(precioNum*cantNum)+'</td>'+
       '</tr>';
   }).join('');
 
-  const mayoristaSel = document.getElementById('f-mayorista');
-  const mayoristaNombre = mayoristaSel.selectedOptions[0].text.replace('+ ','');
+  const fechaFmt = (()=>{ const f=document.getElementById('f-fecha').value; if(!f) return ''; const [y,m,d]=f.split('-'); return d+'/'+m+'/'+y; })();
 
   document.getElementById('lcg-doc').innerHTML =
-  '<div class="lcg-doc-header">'+
-    '<div class="lcg-doclogo"><div class="word1">LACRUZ</div><div class="word2row">'+
-      '<div class="lcg-dotgrid"><span></span><span></span><span></span><span></span><span></span><span></span></div>'+
-      '<div class="word2">GROUP</div></div></div>'+
-    '<div class="lcg-doc-title">ORDEN DE COMPRA: '+escHtml(draftNumeroPreview())+'</div>'+
+  '<div class="lcg-doc-banner">'+
+    '<div>'+LOGO_SVG_WHITE+
+      '<div class="lcg-doc-tagline">Integradores de soluciones tecnológicas</div></div>'+
+    '<div class="lcg-doc-titleblock"><div class="lbl">Orden de compra</div><div class="num">N° '+escHtml(draftNumeroPreview())+'</div>'+
+      '<div class="fecha">Emisión: '+fechaFmt+'</div></div>'+
   '</div>'+
-  '<div class="lcg-razon">LACRUZ TECHNOLOGIES GROUP SACS</div>'+
-  '<table class="lcg-infoblock"><tr><td class="k">RUC</td><td class="v">'+LACRUZ.ruc+'</td><td class="k">CONSULTOR</td><td class="v">'+escHtml(cur.nombre)+'</td></tr>'+
-  '<tr><td class="k">DIRECCIÓN</td><td class="v">'+LACRUZ.direccion+'</td><td class="k">CELULAR</td><td class="v">'+escHtml(cur.celular)+'</td></tr>'+
-  '<tr><td class="k">CORREO</td><td class="v">'+LACRUZ.correo+'</td><td class="k">CORREO</td><td class="v">'+escHtml(cur.correo)+'</td></tr></table>'+
+  '<div class="lcg-doc-refband">PARA: '+escHtml(mayoristaNombre)+'</div>'+
+  '<div class="lcg-doc-content">'+
 
-  '<table class="lcg-infoblock"><tr><td class="k">SEÑORES</td><td class="v" colspan="3" style="text-align:center"><b>'+escHtml(mayoristaNombre)+'</b></td></tr>'+
-  '<tr><td class="k">ATENCIÓN</td><td class="v">'+escHtml(document.getElementById('f-m-contacto').value)+'</td><td class="k">RUC</td><td class="v">'+escHtml(document.getElementById('f-m-ruc').value)+'</td></tr>'+
-  '<tr><td class="k">CORREO</td><td class="v">'+escHtml(document.getElementById('f-m-correo').value)+'</td><td class="k">DIRECCIÓN</td><td class="v">'+escHtml(document.getElementById('f-m-direccion').value)+'</td></tr>'+
-  '<tr><td class="k">TELÉFONO</td><td class="v">'+escHtml(document.getElementById('f-m-telefono').value)+'</td><td class="k">DISTRITO</td><td class="v">'+escHtml(document.getElementById('f-m-distrito').value)+'</td></tr></table>'+
+  '<div class="lcg-cards">'+
+    '<div class="lcg-card"><h4>Datos del mayorista</h4>'+
+      '<div class="r"><span class="k">Empresa</span><span class="v big">'+escHtml(mayoristaNombre)+'</span></div>'+
+      '<div class="r"><span class="k">RUC</span><span class="v">'+escHtml(document.getElementById('f-m-ruc').value)+'</span></div>'+
+      '<div class="r"><span class="k">Atención</span><span class="v">'+escHtml(document.getElementById('f-m-contacto').value)+'</span></div>'+
+      '<div class="r"><span class="k">Correo</span><span class="v">'+escHtml(document.getElementById('f-m-correo').value)+'</span></div>'+
+      '<div class="r"><span class="k">Teléfono</span><span class="v">'+escHtml(document.getElementById('f-m-telefono').value)+'</span></div>'+
+      '<div class="r"><span class="k">Dirección</span><span class="v">'+escHtml(document.getElementById('f-m-direccion').value)+(document.getElementById('f-m-distrito').value?' — '+escHtml(document.getElementById('f-m-distrito').value):'')+'</span></div>'+
+    '</div>'+
+    '<div class="lcg-card"><h4>Nuestros datos</h4>'+
+      '<div class="r"><span class="k">Consultor</span><span class="v big">'+escHtml(cur.nombre)+'</span></div>'+
+      '<div class="r"><span class="k">Puesto</span><span class="v">'+escHtml(cur.puesto||'')+'</span></div>'+
+      '<div class="r"><span class="k">Celular</span><span class="v">'+escHtml(cur.celular)+'</span></div>'+
+      '<div class="r"><span class="k">Correo</span><span class="v">'+escHtml(cur.correo)+'</span></div>'+
+      '<div class="r"><span class="k">RUC</span><span class="v">'+LACRUZ.ruc+'</span></div>'+
+      '<div class="r"><span class="k">Dirección</span><span class="v">'+LACRUZ.direccion+'</span></div>'+
+    '</div>'+
+  '</div>'+
 
-  '<table class="lcg-itemstbl"><thead><tr><th>N.º</th><th>Descripción</th><th>PN</th><th>Precio unit.</th><th>Cant.</th><th>Precio</th></tr></thead>'+
-  '<tbody>'+rows+'</tbody></table>'+
+  '<table class="lcg-itemstbl"><thead><tr><th>N°</th><th>Descripción</th><th>P. Unitario</th><th>Cant.</th><th>Total</th></tr></thead>'+
+  '<tbody>'+rowsHtml+'</tbody></table>'+
 
   '<div class="lcg-bottom">'+
-    '<div class="lcg-cliente"><b>DATOS DEL CLIENTE:</b><br>'+
-      'RAZÓN: '+escHtml(razonCliente)+'<br>'+
-      'RUC: '+escHtml(document.getElementById('f-c-ruc').value)+'<br>'+
-      'CONTACTO: '+escHtml(document.getElementById('f-c-contacto').value)+'<br>'+
-      'CORREO: '+escHtml(document.getElementById('f-c-correo').value)+'<br>'+
-      'CEL: '+escHtml(document.getElementById('f-c-cel').value)+'<br>'+
-      'FORMA DE PAGO: '+escHtml(document.getElementById('f-formapago').value)+
+    '<div class="lcg-cliente-card lcg-card"><h4>Datos del cliente final</h4>'+
+      '<div class="r"><span class="k">Razón</span><span class="v big">'+escHtml(razonCliente)+'</span></div>'+
+      '<div class="r"><span class="k">RUC</span><span class="v">'+escHtml(document.getElementById('f-c-ruc').value)+'</span></div>'+
+      '<div class="r"><span class="k">Contacto</span><span class="v">'+escHtml(document.getElementById('f-c-contacto').value)+'</span></div>'+
+      '<div class="r"><span class="k">Correo</span><span class="v">'+escHtml(document.getElementById('f-c-correo').value)+'</span></div>'+
+      '<div class="r"><span class="k">Celular</span><span class="v">'+escHtml(document.getElementById('f-c-cel').value)+'</span></div>'+
+      '<div class="r"><span class="k">Forma pago</span><span class="v">'+escHtml(document.getElementById('f-formapago').value)+'</span></div>'+
     '</div>'+
-    '<div class="lcg-totals"><table>'+
-      '<tr><td class="k">SUB-TOTAL</td><td class="v">'+moneda+' '+money(t.subtotal)+'</td></tr>'+
-      '<tr><td class="k">IGV ('+t.igvPct+'%)</td><td class="v">'+moneda+' '+money(t.igv)+'</td></tr>'+
-      '<tr class="total"><td class="k">TOTAL</td><td class="v">'+moneda+' '+money(t.total)+'</td></tr>'+
-    '</table></div>'+
+    '<div class="lcg-totals-simple">'+
+      '<div class="trow"><span>Subtotal</span><span class="v">'+moneda+' '+money(t.subtotal)+'</span></div>'+
+      '<div class="trow"><span>IGV ('+t.igvPct+'%)</span><span class="v">'+moneda+' '+money(t.igv)+'</span></div>'+
+      '<div class="trow total"><span>TOTAL</span><span class="v">'+moneda+' '+money(t.total)+'</span></div>'+
+    '</div>'+
   '</div>'+
-  '<div class="lcg-firma"><div class="linea"></div>'+escHtml(cur.nombre)+' Orbe<br>Gerente Comercial<br>LACRUZ TECHNOLOGIES GROUP SACS</div>'+
+
+  '<div class="lcg-firma"><div class="linea"></div><b>'+escHtml(cur.nombreFirma||cur.nombre)+'</b><br>'+escHtml(cur.puesto||'')+'<br>LACRUZ TECHNOLOGIES GROUP SACS</div>'+
+  '</div>'+
   '<div class="lcg-docfooter"><span><b>LACRUZ TECHNOLOGIES GROUP S.A.C.</b> · www.lacruzgroup.com</span>'+
   '<span>'+LACRUZ.direccion+', San Isidro - Lima, Perú</span></div>';
 }
@@ -686,12 +726,15 @@ function resetForm(){
 }
 
 function nextNumero(){
-  const year = new Date().getFullYear().toString().slice(-2);
+  const year = new Date().getFullYear();
+  const prefix = 'OC-'+year+'-';
   const nums = registro
-    .filter(o=>o.numero && o.numero.startsWith(year+'-'))
-    .map(o=> parseInt(o.numero.split('-')[1],10) || 0);
-  const next = (nums.length? Math.max(...nums) : 0) + 1;
-  return year+'-'+String(next).padStart(5,'0');
+    .filter(o=>o.numero && o.numero.startsWith(prefix))
+    .map(o=> parseInt(o.numero.slice(prefix.length),10) || 0);
+  const maxExisting = nums.length? Math.max(...nums) : 0;
+  const piso = (year===2026) ? CORRELATIVO_BASE_2026 : 0;
+  const next = Math.max(maxExisting, piso) + 1;
+  return prefix+String(next).padStart(4,'0');
 }
 
 /* ---------- storage ---------- */
@@ -1170,18 +1213,26 @@ function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 function renderConsultorRows(list){
   const wrap = document.getElementById('consultores-rows');
   wrap.innerHTML = list.map((c,i)=>
-    '<div class="lcg-manage-row">'+
-      '<input data-i="'+i+'" data-f="nombre" value="'+escAttr(c.nombre)+'" placeholder="Nombre">'+
+    '<div style="border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px">'+
+    '<div class="lcg-row2" style="margin-bottom:6px">'+
+      '<input data-i="'+i+'" data-f="nombre" value="'+escAttr(c.nombre)+'" placeholder="Nombre corto (ej. Jaime La Cruz)">'+
+      '<input data-i="'+i+'" data-f="nombreFirma" value="'+escAttr(c.nombreFirma||'')+'" placeholder="Nombre completo para firma (ej. Jaime La Cruz Orbe)">'+
+    '</div>'+
+    '<div class="lcg-row2" style="margin-bottom:6px">'+
+      '<input data-i="'+i+'" data-f="puesto" value="'+escAttr(c.puesto||'')+'" placeholder="Puesto (ej. Gerente Comercial)">'+
       '<input data-i="'+i+'" data-f="celular" value="'+escAttr(c.celular)+'" placeholder="Celular">'+
-      '<input data-i="'+i+'" data-f="correo" value="'+escAttr(c.correo)+'" placeholder="Correo">'+
+    '</div>'+
+    '<div style="display:flex;gap:6px">'+
+      '<input data-i="'+i+'" data-f="correo" value="'+escAttr(c.correo)+'" placeholder="Correo" style="flex:1">'+
       '<button type="button" class="lcg-del" data-rm="'+i+'">&times;</button>'+
-    '</div>').join('');
+    '</div></div>').join('');
 }
 function readConsultorRows(){
-  const rows = [...document.querySelectorAll('#consultores-rows .lcg-manage-row')];
-  return rows.map(row=>{
+  const wrap = document.getElementById('consultores-rows');
+  const groups = [...wrap.children];
+  return groups.map(g=>{
     const obj = {};
-    row.querySelectorAll('input').forEach(inp=> obj[inp.getAttribute('data-f')] = inp.value );
+    g.querySelectorAll('input').forEach(inp=> obj[inp.getAttribute('data-f')] = inp.value );
     return obj;
   }).filter(c=>c.nombre);
 }
