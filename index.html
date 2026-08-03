@@ -251,6 +251,10 @@ table.lcg-reg tr:hover td{background:#F7FAFC;}
             <label>Buscar empresa</label>
             <select id="f-mayorista"></select>
           </div>
+          <div class="lcg-field">
+            <label>Vendedor / Cartera</label>
+            <select id="f-mayorista-vendedor"></select>
+          </div>
           <div class="lcg-row2">
             <div class="lcg-field"><label>Atención (contacto)</label><input id="f-m-contacto"></div>
             <div class="lcg-field"><label>Correo</label><input id="f-m-correo"></div>
@@ -474,16 +478,18 @@ const DEFAULT_CONSULTORES = [
 ];
 
 const DEFAULT_MAYORISTAS = [
-  {nombre:'NEXSYS del Perú', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', contacto:'Bryan Gonzales', correo:'Comercial3.Pe@nexsysla.com', telefono:'+51 936 040 378'},
-  {nombre:'GRUPO DELTRON S.A.', distrito:'La Victoria', direccion:'Cal. Raul Rebagliati Nro. 170', ruc:'20212331377', contacto:'Marco Velazco', correo:'marco.velazco@deltron.com.pe', telefono:'+51 960 125 485'},
-  {nombre:'ADISTEC', distrito:'San Isidro', direccion:'Av. Víctor Andrés Belaunde Nro. 181 Int. 602B', ruc:'20536105523', contacto:'Adrian Wong', correo:'awong@adistec.com', telefono:'+51 997 049 120'},
-  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', contacto:'Jhon Carmelo Moreno', correo:'jhon.carmelo@ingrammicro.com', telefono:'+51 962 381 496'},
-  {nombre:'Licencias Online', distrito:'Santiago de Surco', direccion:'AV. EL DERBY 254 OFICINA 1505', ruc:'20509268691', contacto:'Julissa Murguerza', correo:'jmurguerza@licenciasonline.com', telefono:'+51 997 579 979'},
-  {nombre:'INTCOMEX PERÚ', distrito:'Surquillo', direccion:'CAL. LOS NEGOCIOS URB. LIMATAMBO 448', ruc:'20254507874', contacto:'Renzzo Gozar', correo:'activaciones@intcomexperu.com', telefono:'+51 924 985 518'},
-  {nombre:'NEXSYS', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', contacto:'Giancarlo Campo', correo:'giancarlo.campos@nexsysla.com', telefono:'+51 933 801 087'},
-  {nombre:'IT DACAS PERU SAC', distrito:'Miraflores', direccion:'Av. Tomas Marsano Nro. 2570', ruc:'2054707014', contacto:'Giancarlo Campos', correo:'gcampos@dacas.com', telefono:'+51 993 801 087'},
-  {nombre:'INFINYCORE PERU SAC', distrito:'San Isidro', direccion:'Av. Jorge Basadre 604, Oficina 428', ruc:'20609986493', contacto:'Milagros Cuadros', correo:'milagrosc@infinycore.com', telefono:'+51 925 725 483'},
-  {nombre:'EBSCORP', distrito:'SJL', direccion:'Av. Próceres de la Independencia 2836', ruc:'20478089440', contacto:'Jean Paul Maicelo', correo:'jmaicelo@corp-ebs.com', telefono:'+51 982 710 014'},
+  {nombre:'NEXSYS del Perú', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', cartera:'', contacto:'Bryan Gonzales', correo:'Comercial3.Pe@nexsysla.com', telefono:'+51 936 040 378'},
+  {nombre:'GRUPO DELTRON S.A.', distrito:'La Victoria', direccion:'Cal. Raul Rebagliati Nro. 170', ruc:'20212331377', cartera:'', contacto:'Marco Velazco', correo:'marco.velazco@deltron.com.pe', telefono:'+51 960 125 485'},
+  {nombre:'ADISTEC', distrito:'San Isidro', direccion:'Av. Víctor Andrés Belaunde Nro. 181 Int. 602B', ruc:'20536105523', cartera:'', contacto:'Adrian Wong', correo:'awong@adistec.com', telefono:'+51 997 049 120'},
+  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Lenovo', contacto:'Renzo Abad', correo:'', telefono:''},
+  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Zebra', contacto:'Caroline Carrasco', correo:'caroline.carrasco@ingrammicro.com', telefono:'+51 977 673 552'},
+  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Cisco', contacto:'Jorge Sifuentes', correo:'', telefono:''},
+  {nombre:'Licencias Online', distrito:'Santiago de Surco', direccion:'AV. EL DERBY 254 OFICINA 1505', ruc:'20509268691', cartera:'', contacto:'Julissa Murguerza', correo:'jmurguerza@licenciasonline.com', telefono:'+51 997 579 979'},
+  {nombre:'INTCOMEX PERÚ', distrito:'Surquillo', direccion:'CAL. LOS NEGOCIOS URB. LIMATAMBO 448', ruc:'20254507874', cartera:'', contacto:'Renzzo Gozar', correo:'activaciones@intcomexperu.com', telefono:'+51 924 985 518'},
+  {nombre:'NEXSYS', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', cartera:'', contacto:'Giancarlo Campo', correo:'giancarlo.campos@nexsysla.com', telefono:'+51 933 801 087'},
+  {nombre:'IT DACAS PERU SAC', distrito:'Miraflores', direccion:'Av. Tomas Marsano Nro. 2570', ruc:'2054707014', cartera:'', contacto:'Giancarlo Campos', correo:'gcampos@dacas.com', telefono:'+51 993 801 087'},
+  {nombre:'INFINYCORE PERU SAC', distrito:'San Isidro', direccion:'Av. Jorge Basadre 604, Oficina 428', ruc:'20609986493', cartera:'', contacto:'Milagros Cuadros', correo:'milagrosc@infinycore.com', telefono:'+51 925 725 483'},
+  {nombre:'EBSCORP', distrito:'SJL', direccion:'Av. Próceres de la Independencia 2836', ruc:'20478089440', cartera:'', contacto:'Jean Paul Maicelo', correo:'jmaicelo@corp-ebs.com', telefono:'+51 982 710 014'},
 ];
 
 const LACRUZ = {ruc:'20609011549', direccion:'Calle German Schereiber 276. INT 240', correo:'ventas@lacruzgroup.com'};
@@ -566,18 +572,56 @@ function fillSelect(sel, options, labelFn, keepValue){
   if(prev!=null && [...sel.options].some(o=>o.value===prev)) sel.value = prev;
 }
 
+function empresasUnicas(){
+  const seen = new Set();
+  const out = [];
+  MAYORISTAS.forEach(m=>{ if(!seen.has(m.nombre)){ seen.add(m.nombre); out.push(m.nombre); } });
+  return out;
+}
+function fillMayoristaSelect(sel, keepValue){
+  const prev = keepValue ? sel.value : null;
+  const empresas = empresasUnicas();
+  sel.innerHTML = empresas.map(nombre=>'<option value="'+escAttr(nombre)+'">'+escHtml(nombre)+'</option>').join('')
+    + '<option value="otro">+ Otro (ingresar manualmente)</option>';
+  if(prev!=null && [...sel.options].some(o=>o.value===prev)) sel.value = prev;
+}
+function fillVendedorSelect(sel, empresaNombre, keepValue){
+  const prev = keepValue ? sel.value : null;
+  if(empresaNombre==='otro'){
+    sel.innerHTML = '<option value="otro">— (empresa nueva) —</option>';
+    sel.value = 'otro';
+    return;
+  }
+  const idxs = [];
+  MAYORISTAS.forEach((m,i)=>{ if(m.nombre===empresaNombre) idxs.push(i); });
+  sel.innerHTML = idxs.map(i=>{
+    const m = MAYORISTAS[i];
+    const label = m.cartera ? (m.contacto||'(sin nombre)')+' — '+m.cartera : (m.contacto||'Contacto único');
+    return '<option value="'+i+'">'+escHtml(label)+'</option>';
+  }).join('') + '<option value="otro">+ Otro vendedor (ingresar manualmente)</option>';
+  if(prev!=null && [...sel.options].some(o=>o.value===prev)) sel.value = prev;
+}
+
 function initForm(){
   const selCons = document.getElementById('f-consultor');
   fillSelect(selCons, CONSULTORES, c=>c.nombre);
   selCons.selectedIndex = 0;
 
   const selMay = document.getElementById('f-mayorista');
-  fillSelect(selMay, MAYORISTAS, m=>m.nombre);
+  const selVend = document.getElementById('f-mayorista-vendedor');
+  fillMayoristaSelect(selMay);
   selMay.addEventListener('change', ()=>{
-    if(selMay.value==='otro'){
-      ['f-m-contacto','f-m-correo','f-m-telefono','f-m-ruc','f-m-direccion','f-m-distrito'].forEach(id=>document.getElementById(id).value='');
+    fillVendedorSelect(selVend, selMay.value);
+    selVend.dispatchEvent(new Event('change'));
+  });
+  selVend.addEventListener('change', ()=>{
+    if(selMay.value==='otro' || selVend.value==='otro'){
+      ['f-m-contacto','f-m-correo','f-m-telefono'].forEach(id=>document.getElementById(id).value='');
+      if(selMay.value==='otro'){
+        ['f-m-ruc','f-m-direccion','f-m-distrito'].forEach(id=>document.getElementById(id).value='');
+      }
     } else {
-      const m = MAYORISTAS[+selMay.value];
+      const m = MAYORISTAS[+selVend.value];
       document.getElementById('f-m-contacto').value = m.contacto;
       document.getElementById('f-m-correo').value = m.correo;
       document.getElementById('f-m-telefono').value = m.telefono;
@@ -642,6 +686,8 @@ function renderPreview(){
 
   const mayoristaSel = document.getElementById('f-mayorista');
   const mayoristaNombre = mayoristaSel.selectedOptions[0].text.replace('+ ','');
+  const vendSel = document.getElementById('f-mayorista-vendedor');
+  const carteraActual = (vendSel.value!=='otro' && MAYORISTAS[+vendSel.value]) ? MAYORISTAS[+vendSel.value].cartera : '';
 
   const rowsHtml = items.map((it,i)=>{
     const precioNum = parseFloat(it.precio)||0;
@@ -671,7 +717,7 @@ function renderPreview(){
     '<div class="lcg-card"><h4>Datos del mayorista</h4>'+
       '<div class="r"><span class="k">Empresa</span><span class="v big">'+escHtml(mayoristaNombre)+'</span></div>'+
       '<div class="r"><span class="k">RUC</span><span class="v">'+escHtml(document.getElementById('f-m-ruc').value)+'</span></div>'+
-      '<div class="r"><span class="k">Atención</span><span class="v">'+escHtml(document.getElementById('f-m-contacto').value)+'</span></div>'+
+      '<div class="r"><span class="k">Atención</span><span class="v">'+escHtml(document.getElementById('f-m-contacto').value)+(carteraActual?' ('+escHtml(carteraActual)+')':'')+'</span></div>'+
       '<div class="r"><span class="k">Correo</span><span class="v">'+escHtml(document.getElementById('f-m-correo').value)+'</span></div>'+
       '<div class="r"><span class="k">Teléfono</span><span class="v">'+escHtml(document.getElementById('f-m-telefono').value)+'</span></div>'+
       '<div class="r"><span class="k">Dirección</span><span class="v">'+escHtml(document.getElementById('f-m-direccion').value)+(document.getElementById('f-m-distrito').value?' — '+escHtml(document.getElementById('f-m-distrito').value):'')+'</span></div>'+
@@ -929,7 +975,7 @@ async function cargarHistorialDesdeSharePoint(){
       numero, fecha: f.Fecha ? String(f.Fecha).slice(0,10) : '', consultor: f.Consultor||'',
       mayorista: f.Mayorista||'',
       mayoristaDatos: { contacto:f.MayoristaContacto||'', correo:f.MayoristaCorreo||'', telefono:f.MayoristaTelefono||'',
-        ruc:f.MayoristaRUC||'', direccion:f.MayoristaDireccion||'', distrito:f.MayoristaDistrito||'' },
+        ruc:f.MayoristaRUC||'', direccion:f.MayoristaDireccion||'', distrito:f.MayoristaDistrito||'', cartera:f.MayoristaCartera||'' },
       cliente: f.ClienteFinal||'',
       clienteDatos: { ruc:f.ClienteRUC||'', contacto:f.ClienteContacto||'', correo:f.ClienteCorreo||'',
         cel:f.ClienteCel||'', formaPago:f.FormaPago||'' },
@@ -954,11 +1000,11 @@ async function sincronizarMayoristasYClientes(){
     const fromSp = rawItems.map(it=>{
       const f = it.fields||{};
       return {nombre:f.Title||'', distrito:f.Distrito||'', direccion:f.Direccion||'', ruc:f.RUC||'',
-        contacto:f.ContactoComercial||'', correo:f.ContactoEmail||'', telefono:f.ContactoTelefono||''};
+        cartera:f.Cartera||'', contacto:f.ContactoComercial||'', correo:f.ContactoEmail||'', telefono:f.ContactoTelefono||''};
     }).filter(m=>m.nombre);
     if(fromSp.length) MAYORISTAS = fromSp;
     mayoristasCount = fromSp.length;
-    fillSelect(document.getElementById('f-mayorista'), MAYORISTAS, m=>m.nombre, true);
+    fillMayoristaSelect(document.getElementById('f-mayorista'), true);
     document.getElementById('f-mayorista').dispatchEvent(new Event('change'));
   }
   if(ids.clientes){
@@ -994,7 +1040,7 @@ async function registrarHistorialEnSharePoint(record){
         Mayorista: record.mayorista, MayoristaRUC: record.mayoristaDatos.ruc,
         MayoristaContacto: record.mayoristaDatos.contacto, MayoristaCorreo: record.mayoristaDatos.correo,
         MayoristaTelefono: record.mayoristaDatos.telefono, MayoristaDireccion: record.mayoristaDatos.direccion,
-        MayoristaDistrito: record.mayoristaDatos.distrito, ClienteFinal: record.cliente,
+        MayoristaDistrito: record.mayoristaDatos.distrito, MayoristaCartera: record.mayoristaDatos.cartera||'', ClienteFinal: record.cliente,
         ClienteRUC: record.clienteDatos.ruc, ClienteContacto: record.clienteDatos.contacto,
         ClienteCorreo: record.clienteDatos.correo, ClienteCel: record.clienteDatos.cel,
         FormaPago: record.clienteDatos.formaPago, Moneda: record.moneda, IGVPct: record.igvPct,
@@ -1022,7 +1068,8 @@ async function loadAll(){
   CONSULTORES = await loadShared(K_CONSULTORES, DEFAULT_CONSULTORES);
   MAYORISTAS = await loadShared(K_MAYORISTAS, DEFAULT_MAYORISTAS);
   fillSelect(document.getElementById('f-consultor'), CONSULTORES, c=>c.nombre, true);
-  fillSelect(document.getElementById('f-mayorista'), MAYORISTAS, m=>m.nombre, true);
+  fillMayoristaSelect(document.getElementById('f-mayorista'), true);
+  fillVendedorSelect(document.getElementById('f-mayorista-vendedor'), document.getElementById('f-mayorista').value, true);
   renderRegistro();
   renderPreview();
 }
@@ -1036,6 +1083,8 @@ async function guardarOrden(){
   const cur = currentConsultor();
   const t = computeTotals();
   const mayoristaSel = document.getElementById('f-mayorista');
+  const vendSel = document.getElementById('f-mayorista-vendedor');
+  const carteraSel = (vendSel.value!=='otro' && MAYORISTAS[+vendSel.value]) ? MAYORISTAS[+vendSel.value].cartera : '';
   const record = {
     numero: currentDraftNumero,
     fecha: document.getElementById('f-fecha').value || new Date().toISOString().slice(0,10),
@@ -1048,6 +1097,7 @@ async function guardarOrden(){
       ruc: document.getElementById('f-m-ruc').value,
       direccion: document.getElementById('f-m-direccion').value,
       distrito: document.getElementById('f-m-distrito').value,
+      cartera: carteraSel,
     },
     cliente: document.getElementById('f-c-razon').value,
     clienteDatos: {
@@ -1078,7 +1128,8 @@ function collectDraft(){
     numero: currentDraftNumero,
     fecha: document.getElementById('f-fecha').value,
     consultorIdx: document.getElementById('f-consultor').value,
-    mayoristaIdx: document.getElementById('f-mayorista').value,
+    mayoristaNombre: document.getElementById('f-mayorista').value,
+    vendedorIdx: document.getElementById('f-mayorista-vendedor').value,
     m: {
       contacto: document.getElementById('f-m-contacto').value,
       correo: document.getElementById('f-m-correo').value,
@@ -1116,8 +1167,12 @@ function applyDraft(d){
   currentDraftNumero = d.numero || null;
   document.getElementById('f-fecha').value = d.fecha || new Date().toISOString().slice(0,10);
   document.getElementById('f-consultor').value = d.consultorIdx || 0;
-  document.getElementById('f-mayorista').value = d.mayoristaIdx || 0;
+  document.getElementById('f-mayorista').value = d.mayoristaNombre || 0;
   document.getElementById('f-mayorista').dispatchEvent(new Event('change'));
+  if(d.vendedorIdx!=null){
+    document.getElementById('f-mayorista-vendedor').value = d.vendedorIdx;
+    document.getElementById('f-mayorista-vendedor').dispatchEvent(new Event('change'));
+  }
   document.getElementById('f-m-contacto').value = d.m.contacto;
   document.getElementById('f-m-correo').value = d.m.correo;
   document.getElementById('f-m-telefono').value = d.m.telefono;
@@ -1143,7 +1198,7 @@ function renderRegistro(filter){
   const q = (filter||'').toLowerCase();
   const rows = registro.filter(r=>{
     if(!q) return true;
-    return (r.numero+' '+r.mayorista+' '+r.cliente+' '+r.consultor).toLowerCase().includes(q);
+    return (r.numero+' '+r.mayorista+' '+r.cliente+' '+r.consultor+' '+((r.mayoristaDatos&&r.mayoristaDatos.cartera)||'')).toLowerCase().includes(q);
   });
   document.getElementById('reg-count').textContent = registro.length + ' orden(es) en total';
   if(rows.length===0){
@@ -1151,13 +1206,14 @@ function renderRegistro(filter){
     return;
   }
   wrap.innerHTML = '<table class="lcg-reg"><thead><tr>'+
-    '<th>Número</th><th>Fecha</th><th>Consultor</th><th>Mayorista</th><th>Cliente final</th><th>Total</th><th></th>'+
+    '<th>Número</th><th>Fecha</th><th>Consultor</th><th>Mayorista</th><th>Cartera</th><th>Cliente final</th><th>Total</th><th></th>'+
     '</tr></thead><tbody>'+
     rows.map(r=>'<tr>'+
       '<td><span class="lcg-badge">'+escHtml(r.numero)+'</span></td>'+
       '<td>'+escHtml(r.fecha)+'</td>'+
       '<td>'+escHtml(r.consultor)+'</td>'+
       '<td>'+escHtml(r.mayorista)+'</td>'+
+      '<td>'+escHtml((r.mayoristaDatos&&r.mayoristaDatos.cartera)||'—')+'</td>'+
       '<td>'+escHtml(r.cliente)+'</td>'+
       '<td>'+escHtml(r.moneda)+' '+money(r.total)+'</td>'+
       '<td><button class="lcg-link" data-open="'+escHtml(r.numero)+'">Ver / reimprimir</button></td>'+
@@ -1174,8 +1230,9 @@ function openOrder(numero){
   currentDraftNumero = r.numero;
   const ci = CONSULTORES.findIndex(c=>c.nombre===r.consultor);
   document.getElementById('f-consultor').value = ci>=0?ci:0;
-  const mi = MAYORISTAS.findIndex(m=>m.nombre===r.mayorista);
-  document.getElementById('f-mayorista').value = mi>=0?mi:'otro';
+  const hayEmpresa = MAYORISTAS.some(m=>m.nombre===r.mayorista);
+  document.getElementById('f-mayorista').value = hayEmpresa ? r.mayorista : 'otro';
+  fillVendedorSelect(document.getElementById('f-mayorista-vendedor'), document.getElementById('f-mayorista').value);
   document.getElementById('f-m-contacto').value = r.mayoristaDatos.contacto;
   document.getElementById('f-m-correo').value = r.mayoristaDatos.correo;
   document.getElementById('f-m-telefono').value = r.mayoristaDatos.telefono;
@@ -1243,19 +1300,22 @@ function renderMayoristaRows(list){
   wrap.innerHTML = list.map((m,i)=>
     '<div style="border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px">'+
     '<div class="lcg-row2" style="margin-bottom:6px">'+
-      '<input data-i="'+i+'" data-f="nombre" value="'+escAttr(m.nombre)+'" placeholder="Empresa">'+
+      '<input data-i="'+i+'" data-f="nombre" value="'+escAttr(m.nombre)+'" placeholder="Empresa (repite el nombre si tiene varios vendedores)">'+
+      '<input data-i="'+i+'" data-f="cartera" value="'+escAttr(m.cartera||'')+'" placeholder="Cartera / línea (ej. Lenovo) — opcional">'+
+    '</div>'+
+    '<div class="lcg-row2" style="margin-bottom:6px">'+
       '<input data-i="'+i+'" data-f="ruc" value="'+escAttr(m.ruc)+'" placeholder="RUC">'+
+      '<input data-i="'+i+'" data-f="contacto" value="'+escAttr(m.contacto)+'" placeholder="Contacto / vendedor">'+
     '</div>'+
     '<div class="lcg-row2" style="margin-bottom:6px">'+
-      '<input data-i="'+i+'" data-f="contacto" value="'+escAttr(m.contacto)+'" placeholder="Contacto">'+
       '<input data-i="'+i+'" data-f="correo" value="'+escAttr(m.correo)+'" placeholder="Correo">'+
+      '<input data-i="'+i+'" data-f="telefono" value="'+escAttr(m.telefono)+'" placeholder="Teléfono">'+
     '</div>'+
     '<div class="lcg-row2" style="margin-bottom:6px">'+
-      '<input data-i="'+i+'" data-f="telefono" value="'+escAttr(m.telefono)+'" placeholder="Teléfono">'+
       '<input data-i="'+i+'" data-f="distrito" value="'+escAttr(m.distrito)+'" placeholder="Distrito">'+
+      '<input data-i="'+i+'" data-f="direccion" value="'+escAttr(m.direccion)+'" placeholder="Dirección">'+
     '</div>'+
-    '<div style="display:flex;gap:6px">'+
-      '<input data-i="'+i+'" data-f="direccion" value="'+escAttr(m.direccion)+'" placeholder="Dirección" style="flex:1">'+
+    '<div style="display:flex;justify-content:flex-end">'+
       '<button type="button" class="lcg-del" data-rm="'+i+'">&times;</button>'+
     '</div></div>').join('');
 }
@@ -1359,7 +1419,7 @@ function wireModals(){
     MAYORISTAS = readMayoristaRows();
     if(MAYORISTAS.length===0) MAYORISTAS = DEFAULT_MAYORISTAS.slice();
     await saveShared(K_MAYORISTAS, MAYORISTAS);
-    fillSelect(document.getElementById('f-mayorista'), MAYORISTAS, m=>m.nombre, true);
+    fillMayoristaSelect(document.getElementById('f-mayorista'), true);
     document.getElementById('f-mayorista').dispatchEvent(new Event('change'));
     closeModal('modal-mayoristas');
   });
