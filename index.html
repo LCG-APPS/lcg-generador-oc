@@ -183,6 +183,7 @@ table.lcg-reg tr:hover td{background:#F7FAFC;}
   color:var(--text-muted);margin-top:10px;line-height:1.6;}
 
 @media print{
+  *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
   body *{visibility:hidden;}
   #lcg-doc,#lcg-doc *,.lcg-topbar{visibility:visible;}
   .lcg-topbar{display:none;}
@@ -545,7 +546,7 @@ function renderItemsForm(){
       '<td><input data-id="'+it.id+'" data-f="pn" value="'+escAttr(it.pn)+'"></td>'+
       '<td><input data-id="'+it.id+'" data-f="precio" type="number" step="0.01" value="'+escAttr(it.precio)+'" class="num"></td>'+
       '<td><input data-id="'+it.id+'" data-f="cant" type="number" step="1" value="'+escAttr(it.cant)+'" class="num"></td>'+
-      '<td class="num" style="padding-top:9px">'+money(total)+'</td>'+
+      '<td class="num item-total" style="padding-top:9px">'+money(total)+'</td>'+
       '<td><button type="button" class="lcg-del" data-del="'+it.id+'">&times;</button></td>';
     tbody.appendChild(tr);
   });
@@ -555,7 +556,10 @@ function renderItemsForm(){
       const f = e.target.getAttribute('data-f');
       const item = items.find(i=>i.id===id);
       item[f] = e.target.value;
-      renderItemsForm();
+      const row = e.target.closest('tr');
+      const precioNum = parseFloat(item.precio)||0;
+      const cantNum = parseFloat(item.cant)||0;
+      row.querySelector('.item-total').textContent = money(precioNum*cantNum);
       renderPreview();
     });
   });
