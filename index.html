@@ -268,6 +268,21 @@ table.lcg-reg tr:hover td{background:#F7FAFC;}
             <div class="lcg-field"><label>Dirección</label><input id="f-m-direccion"></div>
             <div class="lcg-field"><label>Distrito</label><input id="f-m-distrito"></div>
           </div>
+          <div style="font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;color:var(--navy);margin:10px 0 8px;padding-top:10px;border-top:1px solid var(--border)">Condiciones de la negociación</div>
+          <div class="lcg-row2">
+            <div class="lcg-field"><label>Forma de pago</label>
+              <select id="f-formapago">
+                <option value="">—</option>
+                <option>Contado</option>
+                <option>Línea de Crédito</option>
+                <option>Crédito 15 días</option>
+                <option>Crédito 30 días</option>
+                <option>Crédito 45 días</option>
+                <option>Crédito 60 días</option>
+              </select>
+            </div>
+            <div class="lcg-field"><label>Lugar de entrega</label><input id="f-lugar-entrega" placeholder="Ej. Oficina del cliente, Lima Metropolitana"></div>
+          </div>
         </div>
 
         <div class="lcg-panel">
@@ -281,19 +296,7 @@ table.lcg-reg tr:hover td{background:#F7FAFC;}
             <div class="lcg-field"><label>Contacto</label><input id="f-c-contacto"></div>
             <div class="lcg-field"><label>Correo</label><input id="f-c-correo"></div>
           </div>
-          <div class="lcg-row2">
-            <div class="lcg-field"><label>Celular</label><input id="f-c-cel"></div>
-            <div class="lcg-field"><label>Forma de pago</label>
-              <select id="f-formapago">
-                <option>Contado</option>
-                <option>Línea de Crédito</option>
-                <option>Crédito 15 días</option>
-                <option>Crédito 30 días</option>
-                <option>Crédito 45 días</option>
-                <option>Crédito 60 días</option>
-              </select>
-            </div>
-          </div>
+          <div class="lcg-field" style="max-width:260px"><label>Celular</label><input id="f-c-cel"></div>
         </div>
 
         <div class="lcg-panel">
@@ -479,18 +482,18 @@ const DEFAULT_CONSULTORES = [
 ];
 
 const DEFAULT_MAYORISTAS = [
-  {nombre:'NEXSYS del Perú', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', cartera:'', contacto:'Bryan Gonzales', correo:'Comercial3.Pe@nexsysla.com', telefono:'+51 936 040 378'},
-  {nombre:'GRUPO DELTRON S.A.', distrito:'La Victoria', direccion:'Cal. Raul Rebagliati Nro. 170', ruc:'20212331377', cartera:'', contacto:'Marco Velazco', correo:'marco.velazco@deltron.com.pe', telefono:'+51 960 125 485'},
-  {nombre:'ADISTEC', distrito:'San Isidro', direccion:'Av. Víctor Andrés Belaunde Nro. 181 Int. 602B', ruc:'20536105523', cartera:'', contacto:'Adrian Wong', correo:'awong@adistec.com', telefono:'+51 997 049 120'},
-  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Lenovo', contacto:'Renzo Abad', correo:'', telefono:''},
-  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Zebra', contacto:'Caroline Carrasco', correo:'caroline.carrasco@ingrammicro.com', telefono:'+51 977 673 552'},
-  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Cisco', contacto:'Jorge Sifuentes', correo:'', telefono:''},
-  {nombre:'Licencias Online', distrito:'Santiago de Surco', direccion:'AV. EL DERBY 254 OFICINA 1505', ruc:'20509268691', cartera:'', contacto:'Julissa Murguerza', correo:'jmurguerza@licenciasonline.com', telefono:'+51 997 579 979'},
-  {nombre:'INTCOMEX PERÚ', distrito:'Surquillo', direccion:'CAL. LOS NEGOCIOS URB. LIMATAMBO 448', ruc:'20254507874', cartera:'', contacto:'Renzzo Gozar', correo:'activaciones@intcomexperu.com', telefono:'+51 924 985 518'},
-  {nombre:'NEXSYS', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', cartera:'', contacto:'Giancarlo Campo', correo:'giancarlo.campos@nexsysla.com', telefono:'+51 933 801 087'},
-  {nombre:'IT DACAS PERU SAC', distrito:'Miraflores', direccion:'Av. Tomas Marsano Nro. 2570', ruc:'2054707014', cartera:'', contacto:'Giancarlo Campos', correo:'gcampos@dacas.com', telefono:'+51 993 801 087'},
-  {nombre:'INFINYCORE PERU SAC', distrito:'San Isidro', direccion:'Av. Jorge Basadre 604, Oficina 428', ruc:'20609986493', cartera:'', contacto:'Milagros Cuadros', correo:'milagrosc@infinycore.com', telefono:'+51 925 725 483'},
-  {nombre:'EBSCORP', distrito:'SJL', direccion:'Av. Próceres de la Independencia 2836', ruc:'20478089440', cartera:'', contacto:'Jean Paul Maicelo', correo:'jmaicelo@corp-ebs.com', telefono:'+51 982 710 014'},
+  {nombre:'NEXSYS del Perú', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', cartera:'', condicionPago:'', contacto:'Bryan Gonzales', correo:'Comercial3.Pe@nexsysla.com', telefono:'+51 936 040 378'},
+  {nombre:'GRUPO DELTRON S.A.', distrito:'La Victoria', direccion:'Cal. Raul Rebagliati Nro. 170', ruc:'20212331377', cartera:'', condicionPago:'Línea de Crédito, 30 días', contacto:'Marco Velazco', correo:'marco.velazco@deltron.com.pe', telefono:'+51 960 125 485'},
+  {nombre:'ADISTEC', distrito:'San Isidro', direccion:'Av. Víctor Andrés Belaunde Nro. 181 Int. 602B', ruc:'20536105523', cartera:'', condicionPago:'', contacto:'Adrian Wong', correo:'awong@adistec.com', telefono:'+51 997 049 120'},
+  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Lenovo', condicionPago:'Línea de Crédito, 45 días', contacto:'Renzo Abad', correo:'', telefono:''},
+  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Zebra', condicionPago:'Línea de Crédito, 45 días', contacto:'Caroline Carrasco', correo:'caroline.carrasco@ingrammicro.com', telefono:'+51 977 673 552'},
+  {nombre:'INGRAM MICRO', distrito:'San Isidro', direccion:'AV. Argentina Nro. 3131', ruc:'20267163228', cartera:'Cisco', condicionPago:'Línea de Crédito, 45 días', contacto:'Jorge Sifuentes', correo:'', telefono:''},
+  {nombre:'Licencias Online', distrito:'Santiago de Surco', direccion:'AV. EL DERBY 254 OFICINA 1505', ruc:'20509268691', cartera:'', condicionPago:'', contacto:'Julissa Murguerza', correo:'jmurguerza@licenciasonline.com', telefono:'+51 997 579 979'},
+  {nombre:'INTCOMEX PERÚ', distrito:'Surquillo', direccion:'CAL. LOS NEGOCIOS URB. LIMATAMBO 448', ruc:'20254507874', cartera:'', condicionPago:'Línea de Crédito, 30 días', contacto:'Renzzo Gozar', correo:'activaciones@intcomexperu.com', telefono:'+51 924 985 518'},
+  {nombre:'NEXSYS', distrito:'Magdalena del Mar', direccion:'Jr. Flora Tristán Nro. 310 Int. 1901 Urb. Orrantia del Mar', ruc:'20470145901', cartera:'', condicionPago:'', contacto:'Giancarlo Campo', correo:'giancarlo.campos@nexsysla.com', telefono:'+51 933 801 087'},
+  {nombre:'IT DACAS PERU SAC', distrito:'Miraflores', direccion:'Av. Tomas Marsano Nro. 2570', ruc:'2054707014', cartera:'', condicionPago:'', contacto:'Giancarlo Campos', correo:'gcampos@dacas.com', telefono:'+51 993 801 087'},
+  {nombre:'INFINYCORE PERU SAC', distrito:'San Isidro', direccion:'Av. Jorge Basadre 604, Oficina 428', ruc:'20609986493', cartera:'', condicionPago:'', contacto:'Milagros Cuadros', correo:'milagrosc@infinycore.com', telefono:'+51 925 725 483'},
+  {nombre:'EBSCORP', distrito:'SJL', direccion:'Av. Próceres de la Independencia 2836', ruc:'20478089440', cartera:'', condicionPago:'', contacto:'Jean Paul Maicelo', correo:'jmaicelo@corp-ebs.com', telefono:'+51 982 710 014'},
 ];
 
 const LACRUZ = {razonSocial:'LACRUZ TECHNOLOGIES GROUP SACS', ruc:'20609011549', direccion:'Calle German Schereiber 276. Int. 240', correo:'ventas@lacruzgroup.com'};
@@ -623,6 +626,7 @@ function initForm(){
       ['f-m-contacto','f-m-correo','f-m-telefono'].forEach(id=>document.getElementById(id).value='');
       if(selMay.value==='otro'){
         ['f-m-ruc','f-m-direccion','f-m-distrito'].forEach(id=>document.getElementById(id).value='');
+        document.getElementById('f-formapago').value = '';
       }
     } else {
       const m = MAYORISTAS[+selVend.value];
@@ -632,6 +636,7 @@ function initForm(){
       document.getElementById('f-m-ruc').value = m.ruc;
       document.getElementById('f-m-direccion').value = m.direccion;
       document.getElementById('f-m-distrito').value = m.distrito;
+      document.getElementById('f-formapago').value = m.condicionPago || '';
     }
     renderPreview();
   });
@@ -639,7 +644,7 @@ function initForm(){
 
   document.getElementById('f-fecha').value = new Date().toISOString().slice(0,10);
 
-  ['f-c-razon','f-c-ruc','f-c-contacto','f-c-correo','f-c-cel','f-formapago','f-moneda','f-igv','f-fecha',
+  ['f-c-razon','f-c-ruc','f-c-contacto','f-c-correo','f-c-cel','f-formapago','f-lugar-entrega','f-moneda','f-igv','f-fecha',
    'f-m-contacto','f-m-correo','f-m-telefono','f-m-ruc','f-m-direccion','f-m-distrito','f-consultor']
    .forEach(id=> document.getElementById(id).addEventListener('input', renderPreview) );
 
@@ -735,6 +740,11 @@ function renderPreview(){
     '</div>'+
   '</div>'+
 
+  '<div style="display:flex;gap:28px;margin:-4px 0 14px;padding:9px 15px;background:var(--bg);border-radius:6px;font-size:10.5px">'+
+    '<div><span style="color:var(--text-muted);font-weight:700">FORMA DE PAGO: </span>'+escHtml(document.getElementById('f-formapago').value||'—')+'</div>'+
+    '<div><span style="color:var(--text-muted);font-weight:700">LUGAR DE ENTREGA: </span>'+escHtml(document.getElementById('f-lugar-entrega').value||'—')+'</div>'+
+  '</div>'+
+
   '<table class="lcg-itemstbl"><thead><tr><th>N°</th><th>Descripción</th><th>P. Unitario</th><th>Cant.</th><th>Total</th></tr></thead>'+
   '<tbody>'+rowsHtml+'</tbody></table>'+
 
@@ -745,7 +755,6 @@ function renderPreview(){
       '<div class="r"><span class="k">Contacto</span><span class="v">'+escHtml(document.getElementById('f-c-contacto').value)+'</span></div>'+
       '<div class="r"><span class="k">Correo</span><span class="v">'+escHtml(document.getElementById('f-c-correo').value)+'</span></div>'+
       '<div class="r"><span class="k">Celular</span><span class="v">'+escHtml(document.getElementById('f-c-cel').value)+'</span></div>'+
-      '<div class="r"><span class="k">Forma pago</span><span class="v">'+escHtml(document.getElementById('f-formapago').value)+'</span></div>'+
     '</div>'+
     '<div class="lcg-totals-simple">'+
       '<div class="trow"><span>Subtotal</span><span class="v">'+moneda+' '+money(t.subtotal)+'</span></div>'+
@@ -768,6 +777,7 @@ function resetForm(){
   document.getElementById('f-c-contacto').value='';
   document.getElementById('f-c-correo').value='';
   document.getElementById('f-c-cel').value='';
+  document.getElementById('f-lugar-entrega').value='';
   document.getElementById('f-fecha').value = new Date().toISOString().slice(0,10);
   document.getElementById('estado-guardado').textContent='';
   addItemRow();
@@ -981,7 +991,8 @@ async function cargarHistorialDesdeSharePoint(){
         ruc:f.MayoristaRUC||'', direccion:f.MayoristaDireccion||'', distrito:f.MayoristaDistrito||'', cartera:f.MayoristaCartera||'' },
       cliente: f.ClienteFinal||'',
       clienteDatos: { ruc:f.ClienteRUC||'', contacto:f.ClienteContacto||'', correo:f.ClienteCorreo||'',
-        cel:f.ClienteCel||'', formaPago:f.FormaPago||'' },
+        cel:f.ClienteCel||'' },
+      formaPago: f.FormaPago||'', lugarEntrega: f.LugarEntrega||'',
       items: detByNumero[numero] || [],
       moneda: f.Moneda||'$', igvPct: f.IGVPct!=null?f.IGVPct:18,
       subtotal: f.Subtotal||0, igv: f.IGV||0, total: f.Total||0,
@@ -1003,7 +1014,7 @@ async function sincronizarMayoristasYClientes(){
     const fromSp = rawItems.map(it=>{
       const f = it.fields||{};
       return {nombre:f.Title||'', distrito:f.Distrito||'', direccion:f.Direccion||'', ruc:f.RUC||'',
-        cartera:f.Cartera||'', contacto:f.ContactoComercial||'', correo:f.ContactoEmail||'', telefono:f.ContactoTelefono||''};
+        cartera:f.Cartera||'', condicionPago:f.CondicionPago||'', contacto:f.ContactoComercial||'', correo:f.ContactoEmail||'', telefono:f.ContactoTelefono||''};
     }).filter(m=>m.nombre);
     if(fromSp.length) MAYORISTAS = fromSp;
     mayoristasCount = fromSp.length;
@@ -1046,7 +1057,7 @@ async function registrarHistorialEnSharePoint(record){
         MayoristaDistrito: record.mayoristaDatos.distrito, MayoristaCartera: record.mayoristaDatos.cartera||'', ClienteFinal: record.cliente,
         ClienteRUC: record.clienteDatos.ruc, ClienteContacto: record.clienteDatos.contacto,
         ClienteCorreo: record.clienteDatos.correo, ClienteCel: record.clienteDatos.cel,
-        FormaPago: record.clienteDatos.formaPago, Moneda: record.moneda, IGVPct: record.igvPct,
+        FormaPago: record.formaPago||'', LugarEntrega: record.lugarEntrega||'', Moneda: record.moneda, IGVPct: record.igvPct,
         Subtotal: record.subtotal, IGV: record.igv, Total: record.total,
       }}),
     });
@@ -1108,8 +1119,9 @@ async function guardarOrden(){
       contacto: document.getElementById('f-c-contacto').value,
       correo: document.getElementById('f-c-correo').value,
       cel: document.getElementById('f-c-cel').value,
-      formaPago: document.getElementById('f-formapago').value,
     },
+    formaPago: document.getElementById('f-formapago').value,
+    lugarEntrega: document.getElementById('f-lugar-entrega').value,
     items: JSON.parse(JSON.stringify(items)),
     moneda: document.getElementById('f-moneda').value,
     igvPct: t.igvPct,
@@ -1147,8 +1159,9 @@ function collectDraft(){
       contacto: document.getElementById('f-c-contacto').value,
       correo: document.getElementById('f-c-correo').value,
       cel: document.getElementById('f-c-cel').value,
-      formaPago: document.getElementById('f-formapago').value,
     },
+    formaPago: document.getElementById('f-formapago').value,
+    lugarEntrega: document.getElementById('f-lugar-entrega').value,
     moneda: document.getElementById('f-moneda').value,
     igvPct: document.getElementById('f-igv').value,
     items: JSON.parse(JSON.stringify(items)),
@@ -1187,7 +1200,8 @@ function applyDraft(d){
   document.getElementById('f-c-contacto').value = d.c.contacto;
   document.getElementById('f-c-correo').value = d.c.correo;
   document.getElementById('f-c-cel').value = d.c.cel;
-  document.getElementById('f-formapago').value = d.c.formaPago;
+  document.getElementById('f-formapago').value = d.formaPago || '';
+  document.getElementById('f-lugar-entrega').value = d.lugarEntrega || '';
   document.getElementById('f-moneda').value = d.moneda;
   document.getElementById('f-igv').value = d.igvPct;
   items = d.items && d.items.length ? JSON.parse(JSON.stringify(d.items)) : [];
@@ -1247,7 +1261,8 @@ function openOrder(numero){
   document.getElementById('f-c-contacto').value = r.clienteDatos.contacto;
   document.getElementById('f-c-correo').value = r.clienteDatos.correo;
   document.getElementById('f-c-cel').value = r.clienteDatos.cel;
-  document.getElementById('f-formapago').value = r.clienteDatos.formaPago;
+  document.getElementById('f-formapago').value = r.formaPago || '';
+  document.getElementById('f-lugar-entrega').value = r.lugarEntrega || '';
   document.getElementById('f-moneda').value = r.moneda;
   document.getElementById('f-igv').value = r.igvPct;
   document.getElementById('f-fecha').value = r.fecha;
@@ -1317,6 +1332,9 @@ function renderMayoristaRows(list){
     '<div class="lcg-row2" style="margin-bottom:6px">'+
       '<input data-i="'+i+'" data-f="distrito" value="'+escAttr(m.distrito)+'" placeholder="Distrito">'+
       '<input data-i="'+i+'" data-f="direccion" value="'+escAttr(m.direccion)+'" placeholder="Dirección">'+
+    '</div>'+
+    '<div class="lcg-row2" style="margin-bottom:6px">'+
+      '<input data-i="'+i+'" data-f="condicionPago" value="'+escAttr(m.condicionPago||'')+'" placeholder="Condición de pago (ej. Línea de Crédito, 30 días)" style="flex:1">'+
     '</div>'+
     '<div style="display:flex;justify-content:flex-end">'+
       '<button type="button" class="lcg-del" data-rm="'+i+'">&times;</button>'+
